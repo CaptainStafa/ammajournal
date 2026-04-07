@@ -425,6 +425,7 @@ html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Nunit
         <button class="btn-sec" onclick="openChangePinModal()">🔑 Change PIN</button>
         <button class="btn-sec" style="margin-top:10px" onclick="openMoodCustomiser()">😊 Customise My Moods</button>
         <button class="btn-dng" onclick="signOut()">Switch Profile</button>
+        <button id="dbg-toggle-btn" style="width:100%;background:none;border:1px solid #333;border-radius:var(--rs);padding:10px;color:var(--g2);font-family:'Nunito',sans-serif;font-size:12px;cursor:pointer;margin-top:8px" onclick="toggleDebug()">🔧 Debug Log (off)</button>
       </div>
     </div>
 
@@ -633,26 +634,78 @@ const PUSH = {
 // SHARED STORAGE (kvdb.io)
 // ════════════════════════════════════════════════════
 const KV = `https://kvdb.io/${KVDB_BUCKET}`;
+// ── Debug log (visible in-app, toggle with window.AMMA_DEBUG=true) ──
+window.AMMA_DEBUG=false;
+function dbg(...args){
+  if(!window.AMMA_DEBUG)return;
+  const msg=args.map(a=>typeof a==='object'?JSON.stringify(a):String(a)).join(' ');
+  console.log('[AMMA]',msg);
+  const panel=document.getElementById('dbg-panel');
+  if(panel){const l=document.createElement('div');l.style.cssText='font-size:10px;border-bottom:1px solid #333;padding:2px 0;word-break:break-all';l.textContent=new Date().toLocaleTimeString()+' '+msg;panel.insertBefore(l,panel.firstChild);if(panel.children.length>40)panel.lastChild.remove();}
+}
+
+// ── localStorage helpers (used only as write-through cache) ──
 function lsGet(k){try{const v=localStorage.getItem('ac_'+k);return v?JSON.parse(v):null;}catch{return null;}}
 function lsSet(k,v){try{localStorage.setItem('ac_'+k,JSON.stringify(v));}catch{}}
 function lsDel(k){try{localStorage.removeItem('ac_'+k);}catch{}}
 
+// ── kvdb.io helpers ──
+// kvGet: ALWAYS fetches from network first. Falls back to localStorage only on network failure.
+// kvSet: writes localStorage immediately, then awaits network write. Retries once on failure.
+// kvDel: removes localStorage, then deletes from network.
 async function kvGet(key){
+  dbg('GET',key);
   try{
-    const r=await fetch(`${KV}/${encodeURIComponent(key)}`);
-    if(!r.ok)return lsGet(key);
+    const r=await fetch(`${KV}/${encodeURIComponent(key)}`,{cache:'no-store'});
+    if(r.status===404){dbg('GET 404',key);return null;}
+    if(!r.ok){dbg('GET err',r.status,key);return lsGet(key);}
     const t=await r.text();
-    if(!t||t==='null'||t==='')return lsGet(key);
-    const v=JSON.parse(t);lsSet(key,v);return v;
-  }catch{return lsGet(key);}
+    if(!t||t==='null'||t===''){dbg('GET empty',key);return null;}
+    const v=JSON.parse(t);
+    lsSet(key,v); // update cache with fresh value
+    dbg('GET ok',key,'len='+(t.length));
+    return v;
+  }catch(e){
+    dbg('GET fail',key,e.message);
+    return lsGet(key); // only fall back to cache if network totally unreachable
+  }
 }
+
 async function kvSet(key,value){
-  lsSet(key,value);
-  try{await fetch(`${KV}/${encodeURIComponent(key)}`,{method:'POST',body:JSON.stringify(value)});}catch{}
+  dbg('SET',key);
+  lsSet(key,value); // write cache immediately so UI stays responsive
+  try{
+    const r=await fetch(`${KV}/${encodeURIComponent(key)}`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(value)
+    });
+    if(!r.ok){
+      dbg('SET err',r.status,key,'retrying...');
+      // Retry once
+      await new Promise(res=>setTimeout(res,500));
+      const r2=await fetch(`${KV}/${encodeURIComponent(key)}`,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(value)
+      });
+      if(!r2.ok) dbg('SET retry failed',r2.status,key);
+      else dbg('SET retry ok',key);
+    } else {
+      dbg('SET ok',key);
+    }
+  }catch(e){
+    dbg('SET fail',key,e.message);
+  }
 }
+
 async function kvDel(key){
+  dbg('DEL',key);
   lsDel(key);
-  try{await fetch(`${KV}/${encodeURIComponent(key)}`,{method:'DELETE'});}catch{}
+  try{
+    await fetch(`${KV}/${encodeURIComponent(key)}`,{method:'DELETE'});
+    dbg('DEL ok',key);
+  }catch(e){dbg('DEL fail',key,e.message);}
 }
 
 const K_USERS   = 'amma_j_users';
@@ -1891,6 +1944,15 @@ function renderCpDots(){
   if(cpPhase==='confirm')  mkDots('cp-dots3', cpConfirm, false);
 }
 
+window.toggleDebug=function(){
+  window.AMMA_DEBUG=!window.AMMA_DEBUG;
+  const panel=document.getElementById('dbg-panel');
+  const btn=document.getElementById('dbg-toggle-btn');
+  if(panel) panel.style.display=window.AMMA_DEBUG?'block':'none';
+  if(btn) btn.textContent='🔧 Debug Log ('+(window.AMMA_DEBUG?'ON — tap again to hide':'off')+')';
+  if(window.AMMA_DEBUG) dbg('=== DEBUG ENABLED === bucket:'+KVDB_BUCKET+' user:'+(CU?.username||'none'));
+}
+
 window.signOut=function(){
   stopRecordingIfActive();
   CU=null;CP=null;MY=[];OUs=[];OD={};AE=null;AC='';APT='';CDel=false;
@@ -1901,5 +1963,8 @@ window.signOut=function(){
 }
 function shakeEl(id){const e=$(id);e.classList.remove('shake');void e.offsetWidth;e.classList.add('shake');setTimeout(()=>e.classList.remove('shake'),420);}
 </script>
+<!-- DEBUG PANEL (hidden by default, toggle via profile tab) -->
+<div id="dbg-panel" style="display:none;position:fixed;bottom:0;left:0;right:0;max-height:35vh;overflow-y:auto;background:rgba(0,0,0,.95);color:#0f0;font-family:monospace;padding:8px;z-index:99999;border-top:2px solid #0f0;"></div>
+
 </body>
 </html>
