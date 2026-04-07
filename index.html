@@ -937,7 +937,12 @@ async function checkPin(){
 async function loadOthers(){
   const all=await kvGet(K_USERS)||[];
   OUs=all.filter(u=>u.username!==CU.username);
-  OD={};for(const ou of OUs)OD[ou.username]=await kvGet(K_META(ou.username))||[];
+  OD={};
+  for(const ou of OUs){
+    // Always clear the local cache for other users' meta so we get fresh data
+    lsDel(K_META(ou.username));
+    OD[ou.username]=await kvGet(K_META(ou.username))||[];
+  }
 }
 function renderApp(){
   $('mine-av').style.background=CU.color;$('mine-av').textContent=ini(CU.displayName);
@@ -1285,29 +1290,51 @@ async function openOtherEntry(meta,authorUn){
   if(!meta.sharedWith?.includes(CU.username)||!shareAccessible(meta))return;
   AE={...meta,isMine:false,authorUn};
   const author=OUs.find(u=>u.username===authorUn);
-  // Always fetch fresh from kvdb (not cache) so edits are immediately visible
+
+  // Always bypass cache — delete local copy and fetch fresh from kvdb
+  // This ensures edits made by the author are immediately visible
   const sharKey=K_SHAR(authorUn,meta.id,CU.username);
-  lsDel(sharKey); // clear local cache for this key so kvGet hits the network
-  const raw=await kvGet(sharKey);
-  let pb='(content not available)',pt=meta.ptitle_shared?.[CU.username]||'(shared entry)';
-  if(raw){
-    pb=await decryptShare(raw.content,meta.id,CU.username)||'(decryption failed)';
-    if(raw.encTitle)pt=await decryptShare(raw.encTitle,meta.id,CU.username)||pt;
+  lsDel(sharKey);
+
+  let pb='Loading…';
+  let pt=meta.ptitle_shared?.[CU.username]||'(shared entry)';
+  let mediaItems=[];
+
+  try {
+    const raw=await kvGet(sharKey);
+    if(raw){
+      const decBody=await decryptShare(raw.content,meta.id,CU.username);
+      pb=decBody||'(decryption failed — content may have been updated, try again)';
+      if(raw.encTitle){
+        const decTitle=await decryptShare(raw.encTitle,meta.id,CU.username);
+        if(decTitle) pt=decTitle;
+      }
+      mediaItems=raw.mediaItems||[];
+    } else {
+      pb='(content not available — ask them to re-share this entry)';
+    }
+  } catch(err){
+    console.error('openOtherEntry error:',err);
+    pb='(failed to load content — please try again)';
   }
-  const mediaItems=raw?.mediaItems||[];
+
   viewMediaItems=mediaItems;
-  AC=pb;APT=pt;
-  $('v-mood').textContent=meta.mood;$('v-author').textContent=author?.displayName||'';
-  $('v-title').textContent=pt;$('v-body').textContent=pb;
+  AC=pb; APT=pt;
+  $('v-mood').textContent=meta.mood;
+  $('v-author').textContent=author?.displayName||'';
+  $('v-title').textContent=pt;
+  $('v-body').textContent=pb;
   $('v-date').innerHTML=`<span>${fd(meta.date)}</span><span>·</span><span>${ft(meta.date)}</span>`;
-  // Show timed access notice
+
   let notice='';
   if(meta.shareSchedule?.accessEnd&&!shareExpired(meta)){
     notice=`<div class="v-timed-notice">⏳ Access ends ${fdt(meta.shareSchedule.accessEnd)} · ${formatTimeRemaining(meta.shareSchedule.accessEnd)}</div>`;
   }
   $('v-notice').innerHTML=notice;
   $('v-media').innerHTML=renderMediaView(mediaItems);
-  renderViewActions();$('v-share').innerHTML='';sh('modal-view');
+  renderViewActions();
+  $('v-share').innerHTML='';
+  sh('modal-view');
 }
 
 function renderViewActions(){
@@ -1341,26 +1368,65 @@ window.saveEdit=async function(){
   const title=$('edit-title').value.trim(),body=$('edit-body').value.trim();
   if(!title||!body)return;
   const btn=$('btn-save-edit');btn.disabled=true;btn.innerHTML='<span class="spin"></span>';
-  const encT=await aesEnc(title,CP,CU.salt),encB=await aesEnc(body,CP,CU.salt);
-  const wordCount=body.split(/\s+/).filter(w=>w).length;
-  const updated=MY.map(e=>e.id!==AE.id?e:{...e,title:encT,ptitle:title,mood:selMoodEdit,edited:new Date().toISOString(),contentWordCount:wordCount,mediaCount:editMediaItems.length});
-  await kvSet(K_META(CU.username),updated);
-  await kvSet(K_BODY(CU.username,AE.id),{content:encB});
-  if(editMediaItems.length>0) await kvSet(K_MEDIA(CU.username,AE.id),editMediaItems);
-  else await kvDel(K_MEDIA(CU.username,AE.id));
-  // Update MY in memory FIRST so rewriteShared has the correct state
-  MY=updated;APT=title;AC=body;viewMediaItems=[...editMediaItems];
-  const entry=updated.find(e=>e.id===AE.id);
-  // Reload others to make sure OUs is fresh before rewriting shared copies
-  if(!OUs.length) await loadOthers();
-  if(entry.sharedWith?.length) await rewriteShared(entry,title,body,editMediaItems);
-  AE={...AE,title:encT,ptitle:title,mood:selMoodEdit,edited:new Date().toISOString(),mediaCount:editMediaItems.length};
-  renderMine();hi('modal-edit');
-  $('v-mood').textContent=selMoodEdit;$('v-title').textContent=title;$('v-body').textContent=body;
-  $('v-date').innerHTML=`<span>${fd(AE.date)}</span><span>·</span><span>${ft(AE.date)}</span><span>·</span><span style="font-style:italic">edited</span>`;
-  $('v-media').innerHTML=renderMediaView(viewMediaItems);
-  $('v-notice').innerHTML='';
-  renderViewActions();renderShareSection();sh('modal-view');
+
+  try{
+    const encT=await aesEnc(title,CP,CU.salt);
+    const encB=await aesEnc(body,CP,CU.salt);
+    const wordCount=body.split(/\s+/).filter(w=>w).length;
+    const editedAt=new Date().toISOString();
+
+    // 1. Build the updated meta entry
+    const updated=MY.map(e=>e.id!==AE.id?e:{
+      ...e,
+      title:encT,
+      ptitle:title,
+      mood:selMoodEdit,
+      edited:editedAt,
+      contentWordCount:wordCount,
+      mediaCount:editMediaItems.length
+    });
+
+    // 2. Save meta, body, media to kvdb
+    await kvSet(K_META(CU.username),updated);
+    await kvSet(K_BODY(CU.username,AE.id),{content:encB});
+    if(editMediaItems.length>0){
+      await kvSet(K_MEDIA(CU.username,AE.id),editMediaItems);
+    } else {
+      await kvDel(K_MEDIA(CU.username,AE.id));
+    }
+
+    // 3. Update all local state
+    MY=updated;
+    APT=title;
+    AC=body;
+    viewMediaItems=[...editMediaItems];
+    AE={...AE,title:encT,ptitle:title,mood:selMoodEdit,edited:editedAt,mediaCount:editMediaItems.length};
+
+    // 4. If shared — push updated content to all readers
+    const entry=updated.find(e=>e.id===AE.id);
+    if(entry.sharedWith?.length>0){
+      // Make sure we have the other user loaded
+      if(!OUs.length) await loadOthers();
+      await rewriteShared(entry,title,body,editMediaItems);
+    }
+
+    // 5. Refresh the UI
+    renderMine();
+    hi('modal-edit');
+    $('v-mood').textContent=selMoodEdit;
+    $('v-title').textContent=title;
+    $('v-body').textContent=body;
+    $('v-date').innerHTML=`<span>${fd(AE.date)}</span><span>·</span><span>${ft(AE.date)}</span><span>·</span><span style="font-style:italic">edited</span>`;
+    $('v-media').innerHTML=renderMediaView(viewMediaItems);
+    $('v-notice').innerHTML='';
+    renderViewActions();
+    renderShareSection();
+    sh('modal-view');
+  } catch(err){
+    console.error('saveEdit error:',err);
+    alert('Failed to save. Please try again.');
+  }
+
   btn.disabled=false;btn.innerHTML='Save Changes';
 }
 
@@ -1427,38 +1493,35 @@ async function toggleShare(entryId,targetUser){
 }
 
 async function rewriteShared(entry,plainTitle,plainBody,mediaItems){
-  // Re-encrypt and push the updated shared copy for every person this is shared with.
-  // We do NOT touch K_META here — saveEdit already wrote the correct metadata.
-  // We only update the ptitle_shared map inside the already-saved meta so the
-  // other person's card shows the correct updated title.
+  // For each person this entry is shared with:
+  // 1. Re-encrypt the content+title+media and write to their shared key
+  // 2. Update the ptitle_shared in meta so their card shows the new title
   for(const uname of(entry.sharedWith||[])){
-    const tUser=OUs.find(u=>u.username===uname);if(!tUser)continue;
-
-    // Re-encrypt body + title + media for this reader
+    // Encrypt the plain content for this reader
     const encB=await encryptShare(plainBody,entry.id,uname);
     const encT=await encryptShare(plainTitle,entry.id,uname);
 
-    // Push updated shared blob (content + title + media) — this is what the other person reads
+    // Overwrite their shared copy with the latest content
+    // Clear local cache first so stale data is never served
+    lsDel(K_SHAR(CU.username,entry.id,uname));
     await kvSet(K_SHAR(CU.username,entry.id,uname),{
       content:encB,
       encTitle:encT,
       mediaItems:mediaItems||[],
-      updatedAt:new Date().toISOString() // so reader knows this is fresh
+      updatedAt:new Date().toISOString()
     });
   }
 
-  // Now update ptitle_shared in the metadata so the other person's card title is current.
-  // Read the latest saved meta (which saveEdit just wrote) rather than using MY in memory.
-  const latestMeta=await kvGet(K_META(CU.username))||MY;
-  const withUpdatedTitles=latestMeta.map(e=>{
-    if(e.id!==entry.id)return e;
+  // Update ptitle_shared in MY (already up to date) and push to kvdb
+  // so the other person's card in Together shows the latest title
+  const updatedMeta=MY.map(e=>{
+    if(e.id!==entry.id) return e;
     const pts={...(e.ptitle_shared||{})};
     (entry.sharedWith||[]).forEach(uname=>{ pts[uname]=plainTitle; });
-    return{...e,ptitle_shared:pts};
+    return {...e, ptitle_shared:pts};
   });
-  await kvSet(K_META(CU.username),withUpdatedTitles);
-  // Sync local MY array too
-  MY=withUpdatedTitles;
+  MY=updatedMeta;
+  await kvSet(K_META(CU.username),updatedMeta);
 }
 
 function renderShareSection(){
