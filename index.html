@@ -20,44 +20,32 @@
   --safe-bot:env(safe-area-inset-bottom,0px);
 }
 html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Nunito',sans-serif;overflow:hidden;}
-#root{width:100%;height:100%;display:flex;flex-direction:column;max-width:430px;margin:0 auto;
-      background:var(--bg);position:relative;overflow:hidden;}
+#root{width:100%;height:100%;display:flex;flex-direction:column;max-width:430px;margin:0 auto;background:var(--bg);position:relative;overflow:hidden;}
 .screen{position:absolute;inset:0;display:flex;flex-direction:column;transition:opacity .26s,transform .26s;}
 .screen.hidden{opacity:0;pointer-events:none;transform:translateY(14px);}
 .hidden{display:none!important;}
 
-/* ── Gate / panels ── */
-.panel{position:fixed;inset:0;z-index:9000;display:flex;flex-direction:column;
-       align-items:center;justify-content:center;padding:28px;
-       background:radial-gradient(ellipse at 50% 35%,#2D1B69 0%,#0A0714 70%);}
+/* ── Panels ── */
+.panel{position:fixed;inset:0;z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px;background:radial-gradient(ellipse at 50% 35%,#2D1B69 0%,#0A0714 70%);}
 .panel.gone{display:none;}
 .porb{position:absolute;border-radius:50%;filter:blur(72px);pointer-events:none;}
-.p-logo{font-family:'Cormorant Garamond',serif;font-size:58px;font-weight:300;
-        letter-spacing:.18em;color:var(--pp);position:relative;animation:rise 1s ease both;}
-.p-sub{font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:.38em;
-       color:var(--pl);opacity:.7;position:relative;animation:rise 1s .18s ease both;margin-bottom:36px;}
-.p-card{width:100%;max-width:360px;background:var(--card);border:1px solid rgba(124,58,237,.25);
-        border-radius:var(--r);padding:26px 22px;position:relative;animation:rise2 .5s .28s ease both;}
-.p-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
-                background:linear-gradient(90deg,transparent,rgba(167,139,250,.4),transparent);}
+.p-logo{font-family:'Cormorant Garamond',serif;font-size:58px;font-weight:300;letter-spacing:.18em;color:var(--pp);position:relative;animation:rise 1s ease both;}
+.p-sub{font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:.38em;color:var(--pl);opacity:.7;position:relative;animation:rise 1s .18s ease both;margin-bottom:36px;}
+.p-card{width:100%;max-width:360px;background:var(--card);border:1px solid rgba(124,58,237,.25);border-radius:var(--r);padding:26px 22px;position:relative;animation:rise2 .5s .28s ease both;}
+.p-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(167,139,250,.4),transparent);}
 .p-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--white);margin-bottom:6px;}
 .p-hint{font-size:12px;color:var(--g3);margin-bottom:18px;line-height:1.7;}
-.p-input{width:100%;background:var(--bg2);border:1px solid rgba(167,139,250,.2);border-radius:var(--rs);
-         padding:13px 15px;color:var(--white);font-family:'Nunito',sans-serif;font-size:15px;
-         outline:none;transition:border-color .2s;letter-spacing:.04em;}
+.p-input{width:100%;background:var(--bg2);border:1px solid rgba(167,139,250,.2);border-radius:var(--rs);padding:13px 15px;color:var(--white);font-family:'Nunito',sans-serif;font-size:15px;outline:none;transition:border-color .2s;}
 .p-input:focus{border-color:var(--pl);}
-.p-input::placeholder{color:var(--g1);letter-spacing:normal;}
-.p-btn{width:100%;margin-top:12px;background:var(--purple);border:none;border-radius:var(--rs);
-       padding:14px;color:white;font-family:'Nunito',sans-serif;font-size:15px;font-weight:600;
-       cursor:pointer;transition:opacity .2s,transform .1s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.p-input::placeholder{color:var(--g1);}
+.p-btn{width:100%;margin-top:12px;background:var(--purple);border:none;border-radius:var(--rs);padding:14px;color:white;font-family:'Nunito',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:opacity .2s,transform .1s;display:flex;align-items:center;justify-content:center;gap:8px;}
 .p-btn:active{opacity:.85;transform:scale(.98);}
 .p-btn:disabled{opacity:.38;cursor:default;}
 .p-err{color:#FCA5A5;font-size:13px;margin-top:10px;text-align:center;min-height:18px;}
 
 /* ── Sync cover ── */
 #sync-cover{z-index:8000;gap:14px;}
-.sync-spin{width:26px;height:26px;border:2px solid rgba(167,139,250,.2);
-           border-top-color:var(--pl);border-radius:50%;animation:spin .8s linear infinite;}
+.sync-spin{width:26px;height:26px;border:2px solid rgba(167,139,250,.2);border-top-color:var(--pl);border-radius:50%;animation:spin .8s linear infinite;}
 .sync-msg{font-size:13px;color:var(--g3);}
 
 /* ── Splash ── */
@@ -103,6 +91,7 @@ html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Nunit
 .btn-p:active{opacity:.85;transform:scale(.98);}
 .btn-p:disabled{opacity:.38;cursor:default;}
 .btn-ghost{background:none;border:none;color:var(--g3);font-family:'Nunito',sans-serif;font-size:13px;cursor:pointer;padding:10px;width:100%;margin-top:2px;}
+.btn-sec{width:100%;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.28);border-radius:var(--rs);padding:14px;color:var(--pl);font-family:'Nunito',sans-serif;font-size:15px;font-weight:600;cursor:pointer;margin-top:10px;}
 .err-box{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:var(--rs);padding:9px 13px;color:#FCA5A5;font-size:13px;margin-bottom:12px;}
 
 /* ── PIN ── */
@@ -122,7 +111,7 @@ html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Nunit
 .pin-btn.pempty{background:none;border:none;cursor:default;}
 .pin-back{margin-top:24px;background:none;border:none;color:var(--g3);font-size:13px;cursor:pointer;font-family:'Nunito',sans-serif;}
 
-/* ── App shell ── */
+/* ── App ── */
 #app{flex-direction:column;}
 .app-body{flex:1;overflow-y:auto;overflow-x:hidden;padding-bottom:90px;-webkit-overflow-scrolling:touch;}
 .hdr{padding:56px 22px 16px;}
@@ -145,7 +134,7 @@ html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Nunit
 .ecard::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(167,139,250,.28),transparent);}
 .ecard:active{transform:scale(.98);border-color:rgba(124,58,237,.4);}
 .ec-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;}
-.ec-mood{width:38px;height:38px;background:var(--pm);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.ec-mood{width:38px;height:38px;background:var(--pm);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
 .ec-meta{flex:1;min-width:0;}
 .ec-date{font-size:10px;color:var(--g3);letter-spacing:.06em;}
 .ec-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--white);line-height:1.2;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -156,10 +145,10 @@ html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Nunit
 .badge-timed{display:flex;align-items:center;gap:4px;font-size:11px;background:rgba(16,185,129,.1);border-radius:20px;padding:3px 10px;color:#6EE7B7;}
 .badge-expired{display:flex;align-items:center;gap:4px;font-size:11px;background:rgba(239,68,68,.1);border-radius:20px;padding:3px 10px;color:#FCA5A5;}
 
-/* ── Peek card (other person's private entry) ── */
+/* ── Peek card ── */
 .peek-card{background:var(--card);border:1px solid rgba(124,58,237,.1);border-radius:var(--r);padding:16px 18px;animation:rise2 .4s ease both;position:relative;overflow:hidden;}
 .peek-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;}
-.peek-mood{width:38px;height:38px;background:var(--pm);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.peek-mood{width:38px;height:38px;background:var(--pm);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
 .peek-meta{flex:1;min-width:0;}
 .peek-title{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--white);line-height:1.2;margin-top:2px;}
 .peek-date{font-size:10px;color:var(--g3);letter-spacing:.06em;}
@@ -170,52 +159,64 @@ html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Nunit
 .peek-lock-label{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--g3);letter-spacing:.08em;}
 .peek-len{font-size:11px;color:var(--g3);margin-top:6px;text-align:right;}
 
-/* ── Media in entries ── */
-.media-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
-.media-thumb{width:72px;height:72px;border-radius:10px;object-fit:cover;cursor:pointer;border:1px solid rgba(124,58,237,.15);}
-.media-thumb-vid{width:72px;height:72px;border-radius:10px;background:var(--bg2);display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid rgba(124,58,237,.15);flex-shrink:0;}
-.media-audio{display:flex;align-items:center;gap:8px;background:var(--bg2);border-radius:10px;padding:10px 14px;cursor:pointer;border:1px solid rgba(124,58,237,.15);}
-.media-audio-ic{font-size:20px;}
-.media-audio-lbl{font-size:12px;color:var(--g3);}
+/* ── Mood picker (free emoji input) ── */
+.mood-bar{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.mood-current{width:48px;height:48px;background:var(--pm);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;cursor:pointer;border:2px solid rgba(124,58,237,.2);transition:border-color .15s;}
+.mood-current:active{border-color:var(--pl);}
+.mood-input-wrap{flex:1;position:relative;}
+.mood-input{width:100%;background:var(--bg2);border:1px solid rgba(167,139,250,.18);border-radius:var(--rs);padding:10px 12px;color:var(--white);font-size:22px;outline:none;transition:border-color .2s;font-family:inherit;}
+.mood-input:focus{border-color:var(--pl);}
+.mood-input::placeholder{font-size:13px;color:var(--g2);}
+.mood-hint{font-size:11px;color:var(--g3);margin-top:5px;}
+
+/* ── PC Emoji Picker ── */
+.emoji-picker-pc{position:absolute;z-index:500;background:var(--card);border:1px solid rgba(124,58,237,.3);border-radius:16px;box-shadow:0 16px 48px rgba(0,0,0,.6);width:320px;max-height:360px;display:flex;flex-direction:column;overflow:hidden;animation:rise2 .2s ease both;}
+.ep-search{padding:10px 12px;border-bottom:1px solid rgba(124,58,237,.12);flex-shrink:0;}
+.ep-search-in{width:100%;background:var(--bg2);border:1px solid rgba(167,139,250,.18);border-radius:8px;padding:8px 12px;color:var(--white);font-size:13px;outline:none;font-family:inherit;}
+.ep-cats{display:flex;gap:0;border-bottom:1px solid rgba(124,58,237,.1);flex-shrink:0;overflow-x:auto;}
+.ep-cat{padding:7px 12px;font-size:14px;cursor:pointer;border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;transition:border-color .15s,background .15s;white-space:nowrap;flex-shrink:0;}
+.ep-cat.on{border-bottom-color:var(--pl);background:rgba(124,58,237,.08);}
+.ep-grid-wrap{flex:1;overflow-y:auto;padding:8px;}
+.ep-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:2px;}
+.ep-em{width:100%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:20px;border-radius:8px;cursor:pointer;transition:background .1s;user-select:none;}
+.ep-em:hover{background:var(--pm);}
+.ep-em:active{background:rgba(124,58,237,.3);transform:scale(.88);}
+
+/* ── Media ── */
 .media-add-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
-.media-add-btn{display:flex;align-items:center;gap:5px;background:var(--bg2);border:1px dashed rgba(167,139,250,.22);border-radius:10px;padding:8px 13px;color:var(--g3);font-size:12px;cursor:pointer;font-family:'Nunito',sans-serif;transition:border-color .2s;}
+.media-add-btn{display:flex;align-items:center;gap:5px;background:var(--bg2);border:1px dashed rgba(167,139,250,.22);border-radius:10px;padding:8px 13px;color:var(--g3);font-size:12px;cursor:pointer;font-family:'Nunito',sans-serif;transition:border-color .2s,color .2s;}
 .media-add-btn:active{border-color:var(--pl);color:var(--pl);}
-.media-preview-strip{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+.media-preview-strip{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
 .mp-item{position:relative;width:72px;height:72px;}
 .mp-img{width:72px;height:72px;border-radius:10px;object-fit:cover;border:1px solid rgba(124,58,237,.2);}
+.mp-thumb-box{width:72px;height:72px;border-radius:10px;background:var(--bg2);border:1px solid rgba(124,58,237,.2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;}
+.mp-thumb-ic{font-size:22px;}
+.mp-thumb-lbl{font-size:9px;color:var(--g3);}
 .mp-remove{position:absolute;top:-5px;right:-5px;width:20px;height:20px;background:#EF4444;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer;border:none;color:white;line-height:1;}
-.mp-audio{width:72px;height:72px;border-radius:10px;background:var(--bg2);border:1px solid rgba(124,58,237,.2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;}
-.mp-audio-ic{font-size:22px;}
-.mp-audio-lbl{font-size:9px;color:var(--g3);}
-/* Full-screen media lightbox */
-.lightbox{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.95);display:flex;align-items:center;justify-content:center;}
+.media-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;}
+.media-thumb{width:72px;height:72px;border-radius:10px;object-fit:cover;cursor:pointer;border:1px solid rgba(124,58,237,.15);}
+.media-box{width:72px;height:72px;border-radius:10px;background:var(--bg2);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;border:1px solid rgba(124,58,237,.15);gap:4px;}
+.media-box-ic{font-size:24px;}
+.media-box-lbl{font-size:10px;color:var(--g3);}
+.media-audio-bar{display:flex;align-items:center;gap:8px;background:var(--bg2);border-radius:10px;padding:10px 14px;cursor:pointer;border:1px solid rgba(124,58,237,.15);margin-top:4px;}
+
+/* ── Lightbox ── */
+.lightbox{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.97);display:flex;align-items:center;justify-content:center;}
 .lightbox.gone{display:none;}
-.lb-close{position:absolute;top:max(20px,env(safe-area-inset-top,0px));right:20px;width:36px;height:36px;background:rgba(255,255,255,.1);border-radius:50%;border:none;color:white;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
-.lb-img{max-width:100%;max-height:90vh;border-radius:4px;object-fit:contain;}
-.lb-vid{max-width:100%;max-height:85vh;border-radius:4px;}
-.lb-audio-wrap{display:flex;flex-direction:column;align-items:center;gap:16px;padding:24px;}
-.lb-audio-ic{font-size:56px;}
-.lb-audio-el{width:100%;max-width:320px;}
+.lb-close{position:absolute;top:max(20px,env(safe-area-inset-top,0px));right:20px;width:36px;height:36px;background:rgba(255,255,255,.1);border-radius:50%;border:none;color:white;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:1;}
+.lb-img{max-width:95%;max-height:88vh;border-radius:4px;object-fit:contain;}
+.lb-vid{max-width:95%;max-height:85vh;border-radius:4px;}
+.lb-audio-wrap{display:flex;flex-direction:column;align-items:center;gap:16px;padding:32px 24px;}
+.lb-audio-ic{font-size:60px;}
+.lb-audio-name{font-size:14px;color:var(--g3);}
+.lb-audio-el{width:100%;max-width:300px;margin-top:8px;}
 
-/* ── Sharing settings (scheduled / timed) ── */
-.share-settings{background:var(--bg2);border-radius:12px;border:1px solid rgba(124,58,237,.15);overflow:hidden;margin-top:10px;}
-.ss-tab-row{display:flex;border-bottom:1px solid rgba(124,58,237,.12);}
-.ss-tab{flex:1;padding:10px;font-size:12px;font-weight:600;text-align:center;cursor:pointer;color:var(--g3);transition:color .15s,background .15s;border:none;background:none;font-family:'Nunito',sans-serif;}
-.ss-tab.on{color:var(--pl);background:rgba(124,58,237,.08);}
-.ss-body{padding:14px;}
-.ss-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
-.ss-lbl{font-size:12px;color:var(--g4);}
-.ss-note{font-size:11px;color:var(--g3);margin-top:4px;line-height:1.5;}
-.dt-input{background:var(--bg);border:1px solid rgba(167,139,250,.2);border-radius:8px;padding:8px 10px;color:var(--white);font-family:'Nunito',sans-serif;font-size:13px;outline:none;width:100%;margin-top:6px;}
-.dt-input::-webkit-calendar-picker-indicator{filter:invert(.5);}
-.dur-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
-.dur-chip{padding:5px 12px;border-radius:20px;background:var(--card);border:1px solid rgba(124,58,237,.2);color:var(--g3);font-size:12px;cursor:pointer;transition:all .15s;font-family:'Nunito',sans-serif;}
-.dur-chip.sel{background:rgba(124,58,237,.2);border-color:var(--pl);color:var(--pl);}
-.dur-custom-row{display:flex;gap:6px;align-items:center;margin-top:8px;}
-.dur-num{width:60px;background:var(--bg);border:1px solid rgba(167,139,250,.2);border-radius:8px;padding:7px 8px;color:var(--white);font-family:'Nunito',sans-serif;font-size:13px;outline:none;text-align:center;}
-.dur-unit{background:var(--bg);border:1px solid rgba(167,139,250,.2);border-radius:8px;padding:7px 10px;color:var(--white);font-family:'Nunito',sans-serif;font-size:13px;outline:none;}
+/* ── Word count ── */
+.wc-bar{display:flex;justify-content:flex-end;padding:4px 0 0;min-height:18px;}
+.wc-label{font-size:11px;color:var(--g2);transition:color .2s;}
+.wc-label.active{color:var(--pl);}
 
-/* ── Modal / Sheet ── */
+/* ── Modal ── */
 .overlay{position:absolute;inset:0;background:rgba(10,7,20,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:200;display:flex;flex-direction:column;animation:fadeIn .22s ease both;}
 .sheet{background:var(--bg2);border-radius:26px 26px 0 0;border-top:1px solid rgba(124,58,237,.22);flex:1;margin-top:52px;display:flex;flex-direction:column;overflow:hidden;animation:rise2 .3s ease both;position:relative;}
 .sheet::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(167,139,250,.38),transparent);z-index:1;}
@@ -225,30 +226,65 @@ html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Nunit
 .mclose{width:30px;height:30px;background:rgba(255,255,255,.07);border-radius:50%;border:none;color:var(--g3);font-size:20px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
 .mbody{flex:1;overflow-y:auto;padding:18px 20px;-webkit-overflow-scrolling:touch;}
 .mfoot{padding:13px 20px max(18px,var(--safe-bot));border-top:1px solid rgba(124,58,237,.1);flex-shrink:0;}
-.mood-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px;}
-.mood-opt{width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:19px;border-radius:12px;cursor:pointer;background:var(--card);border:2px solid transparent;transition:all .15s;}
-.mood-opt.sel{background:var(--pm);border-color:var(--pl);}
-.title-in{width:100%;background:none;border:none;border-bottom:1px solid rgba(167,139,250,.18);padding:8px 0;font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--white);outline:none;margin-bottom:18px;}
+.title-in{width:100%;background:none;border:none;border-bottom:1px solid rgba(167,139,250,.18);padding:8px 0;font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--white);outline:none;margin-bottom:14px;}
 .title-in::placeholder{color:rgba(167,139,250,.28);}
 .body-ta{width:100%;min-height:180px;background:none;border:none;color:var(--g4);font-family:'Nunito',sans-serif;font-size:15px;line-height:1.75;outline:none;resize:none;}
 .body-ta::placeholder{color:var(--g2);}
+.divider{height:1px;background:rgba(124,58,237,.1);margin:16px 0;}
+.sml-lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--g3);margin-bottom:8px;display:block;}
+
+/* ── View entry ── */
 .v-title{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--white);line-height:1.2;margin-bottom:8px;}
 .v-date{font-size:11px;color:var(--g3);letter-spacing:.08em;margin-bottom:16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
 .v-body{font-size:15px;line-height:1.8;color:var(--g4);white-space:pre-wrap;word-break:break-word;}
+.v-wc{font-size:11px;color:var(--g2);margin-top:8px;}
+/* ── Comments ── */
+.comments-sec{margin-top:24px;padding-top:20px;border-top:1px solid rgba(124,58,237,.13);}
+.comment-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.comment-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0;margin-top:2px;}
+.comment-bubble{flex:1;min-width:0;}
+.comment-meta{display:flex;align-items:center;gap:6px;margin-bottom:3px;}
+.comment-author{font-size:12px;font-weight:600;color:var(--white);}
+.comment-time{font-size:10px;color:var(--g3);}
+.comment-text{font-size:13px;color:var(--g4);line-height:1.55;word-break:break-word;}
+.comment-del{background:none;border:none;color:var(--g2);font-size:11px;cursor:pointer;padding:0 0 0 6px;flex-shrink:0;}
+.comment-input-row{display:flex;gap:8px;align-items:flex-end;margin-top:12px;}
+.comment-input{flex:1;background:var(--bg);border:1px solid rgba(167,139,250,.18);border-radius:12px;padding:10px 13px;color:var(--white);font-family:'Nunito',sans-serif;font-size:13px;outline:none;resize:none;min-height:40px;max-height:100px;transition:border-color .2s;line-height:1.4;}
+.comment-input:focus{border-color:var(--pl);}
+.comment-input::placeholder{color:var(--g1);}
+.comment-send{width:36px;height:36px;background:var(--purple);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:transform .15s,opacity .2s;font-size:16px;}
+.comment-send:active{transform:scale(.9);}
+.comment-send:disabled{opacity:.35;cursor:default;}
+.no-comments{font-size:12px;color:var(--g2);text-align:center;padding:12px 0;}
 .v-sched-notice{display:flex;align-items:center;gap:8px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:10px;padding:10px 13px;font-size:12px;color:#FCD34D;margin-bottom:14px;}
 .v-timed-notice{display:flex;align-items:center;gap:8px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:10px;padding:10px 13px;font-size:12px;color:#6EE7B7;margin-bottom:14px;}
 .v-expired-notice{display:flex;align-items:center;gap:8px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:10px 13px;font-size:12px;color:#FCA5A5;margin-bottom:14px;}
+
+/* ── Share section ── */
 .share-sec{margin-top:24px;padding-top:20px;border-top:1px solid rgba(124,58,237,.13);}
 .sec-lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--g3);margin-bottom:14px;display:block;}
 .share-row{display:flex;align-items:flex-start;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04);gap:10px;}
 .s-name{font-size:14px;color:var(--white);font-weight:500;}
-.s-sub{font-size:11px;color:var(--g3);margin-top:2px;}
 .toggle{width:50px;height:28px;background:var(--g1);border-radius:14px;cursor:pointer;position:relative;transition:background .2s;border:none;flex-shrink:0;margin-top:2px;}
 .toggle.on{background:var(--purple);}
 .tog-th{position:absolute;top:3px;left:3px;width:22px;height:22px;background:white;border-radius:50%;transition:transform .2s;box-shadow:0 2px 4px rgba(0,0,0,.3);}
 .toggle.on .tog-th{transform:translateX(22px);}
 .edit-btn{display:flex;align-items:center;gap:5px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.24);border-radius:8px;padding:7px 12px;color:var(--pl);font-size:12px;cursor:pointer;font-family:'Nunito',sans-serif;}
 .del-btn{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.26);border-radius:8px;padding:7px 12px;color:#FCA5A5;font-size:12px;cursor:pointer;font-family:'Nunito',sans-serif;}
+.share-settings{background:var(--bg2);border-radius:12px;border:1px solid rgba(124,58,237,.15);overflow:hidden;margin-top:10px;}
+.ss-tab-row{display:flex;border-bottom:1px solid rgba(124,58,237,.12);}
+.ss-tab{flex:1;padding:10px;font-size:11px;font-weight:600;text-align:center;cursor:pointer;color:var(--g3);transition:color .15s,background .15s;border:none;background:none;font-family:'Nunito',sans-serif;}
+.ss-tab.on{color:var(--pl);background:rgba(124,58,237,.08);}
+.ss-body{padding:14px;}
+.ss-note{font-size:11px;color:var(--g3);margin-top:4px;line-height:1.5;}
+.dt-input{background:var(--bg);border:1px solid rgba(167,139,250,.2);border-radius:8px;padding:8px 10px;color:var(--white);font-family:'Nunito',sans-serif;font-size:13px;outline:none;width:100%;margin-top:6px;}
+.dt-input::-webkit-calendar-picker-indicator{filter:invert(.5);}
+.dur-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+.dur-chip{padding:5px 12px;border-radius:20px;background:var(--card);border:1px solid rgba(124,58,237,.2);color:var(--g3);font-size:12px;cursor:pointer;transition:all .15s;font-family:'Nunito',sans-serif;}
+.dur-chip.sel{background:rgba(124,58,237,.2);border-color:var(--pl);color:var(--pl);}
+.dur-custom-row{display:flex;gap:6px;align-items:center;margin-top:8px;}
+.dur-num{width:60px;background:var(--bg);border:1px solid rgba(167,139,250,.2);border-radius:8px;padding:7px 8px;color:var(--white);font-family:'Nunito',sans-serif;font-size:13px;outline:none;text-align:center;}
+.dur-unit{background:var(--bg);border:1px solid rgba(167,139,250,.2);border-radius:8px;padding:7px 10px;color:var(--white);font-family:'Nunito',sans-serif;font-size:13px;outline:none;}
 
 /* ── Together / Profile ── */
 .u-sec{padding:0 14px 26px;}
@@ -265,8 +301,6 @@ html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Nunit
 .p-sl{color:var(--g3);font-size:14px;}
 .p-sv{color:var(--pp);font-size:14px;font-weight:700;}
 .btn-dng{width:100%;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.26);border-radius:var(--rs);padding:14px;color:#FCA5A5;font-family:'Nunito',sans-serif;font-size:15px;font-weight:600;cursor:pointer;margin-top:20px;}
-.btn-sec{width:100%;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.28);border-radius:var(--rs);padding:14px;color:var(--pl);font-family:'Nunito',sans-serif;font-size:15px;font-weight:600;cursor:pointer;margin-top:10px;}
-.btn-sec:active{background:rgba(124,58,237,.2);}
 
 /* ── Change PIN modal ── */
 .pin-change-wrap{padding:8px 0;}
@@ -274,39 +308,13 @@ html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Nunit
 .pin-change-lbl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--g3);}
 .pin-status{font-size:12px;color:#6EE7B7;margin-top:10px;text-align:center;min-height:18px;}
 
-/* ── Emoji mood picker ── */
-.emoji-picker-overlay{position:absolute;inset:0;background:rgba(10,7,20,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:300;display:flex;flex-direction:column;animation:fadeIn .2s ease both;}
-.emoji-picker-sheet{background:var(--bg2);border-radius:26px 26px 0 0;border-top:1px solid rgba(124,58,237,.22);flex:1;margin-top:80px;display:flex;flex-direction:column;overflow:hidden;}
-.emoji-picker-hdr{padding:14px 20px 12px;border-bottom:1px solid rgba(124,58,237,.1);flex-shrink:0;}
-.emoji-picker-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--white);margin-bottom:4px;}
-.emoji-picker-sub{font-size:12px;color:var(--g3);}
-.emoji-cat-row{display:flex;gap:0;border-bottom:1px solid rgba(124,58,237,.1);flex-shrink:0;overflow-x:auto;}
-.emoji-cat{padding:9px 14px;font-size:11px;color:var(--g3);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;background:none;border-top:none;border-left:none;border-right:none;font-family:'Nunito',sans-serif;}
-.emoji-cat.on{color:var(--pl);border-bottom-color:var(--pl);}
-.emoji-grid-wrap{flex:1;overflow-y:auto;padding:14px;}
-.emoji-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
-.emoji-cell{width:100%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:26px;border-radius:10px;cursor:pointer;transition:background .12s,transform .1s;border:2px solid transparent;}
-.emoji-cell:active{background:var(--pm);transform:scale(.9);}
-.emoji-cell.chosen{background:var(--pm);border-color:var(--pl);}
-.emoji-picker-foot{padding:12px 20px max(16px,var(--safe-bot));border-top:1px solid rgba(124,58,237,.1);flex-shrink:0;}
-.sel-display{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-.sel-display-emoji{font-size:32px;}
-.sel-display-lbl{font-size:13px;color:var(--g3);}
-.mood-trigger{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid rgba(124,58,237,.2);border-radius:12px;padding:8px 14px;cursor:pointer;margin-bottom:14px;transition:border-color .15s;}
-.mood-trigger:active{border-color:var(--pl);}
-.mood-trigger-emoji{font-size:24px;}
-.mood-trigger-lbl{font-size:13px;color:var(--g3);}
-.mood-trigger-arr{font-size:12px;color:var(--g3);margin-left:auto;}
-
 /* ── Misc ── */
 .empty{text-align:center;padding:60px 24px;}
 .empty-ic{font-size:46px;margin-bottom:14px;opacity:.32;}
 .empty-t{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--g3);margin-bottom:8px;}
 .empty-b{font-size:13px;color:var(--g2);line-height:1.7;}
 .no-peer{text-align:center;padding:36px 24px;color:var(--g3);font-size:14px;line-height:1.8;}
-.sml-lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--g3);margin-bottom:8px;display:block;}
 .spin{width:18px;height:18px;border:2px solid rgba(255,255,255,.25);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite;display:inline-block;}
-.divider{height:1px;background:rgba(124,58,237,.1);margin:16px 0;}
 
 @keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
 @keyframes rise2{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
@@ -322,8 +330,7 @@ html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Nunit
 <div class="panel" id="panel-gate">
   <div class="porb" style="top:10%;left:8%;width:200px;height:200px;background:rgba(124,58,237,.18)"></div>
   <div class="porb" style="bottom:15%;right:5%;width:150px;height:150px;background:rgba(167,139,250,.12)"></div>
-  <div class="p-logo">AMMA</div>
-  <div class="p-sub">Journal</div>
+  <div class="p-logo">AMMA</div><div class="p-sub">Journal</div>
   <div class="p-card">
     <div class="p-title">Private Journal 🔐</div>
     <div class="p-hint">Enter the access password to open your journal.</div>
@@ -340,10 +347,24 @@ html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Nunit
   <div class="sync-msg" style="font-size:13px;color:var(--g3);margin-top:10px">Syncing…</div>
 </div>
 
-<!-- MEDIA LIGHTBOX -->
+<!-- LIGHTBOX -->
 <div class="lightbox gone" id="lightbox">
-  <button class="lb-close" id="lb-close">×</button>
+  <button class="lb-close" onclick="closeLightbox()">×</button>
   <div id="lb-content"></div>
+</div>
+
+<!-- DEBUG DRAWER -->
+<div id="dbg-overlay" style="display:none;position:fixed;inset:0;z-index:99990;background:rgba(0,0,0,.4)" onclick="toggleDebug()"></div>
+<div id="dbg-drawer" style="position:fixed;top:0;right:0;bottom:0;width:85%;max-width:360px;z-index:99999;background:#0a0a0a;border-left:2px solid #00ff00;display:none;flex-direction:column;transform:translateX(100%);transition:transform .3s ease;">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 14px 12px;border-bottom:1px solid #1a1a1a;flex-shrink:0">
+    <div><div style="color:#0f0;font-family:monospace;font-size:13px;font-weight:bold">🔧 Debug</div>
+    <div style="color:#555;font-family:monospace;font-size:10px;margin-top:2px" id="dbg-lbl"></div></div>
+    <div style="display:flex;gap:8px">
+      <button onclick="clearDebug()" style="background:#1a1a1a;border:1px solid #333;color:#888;font-size:11px;padding:4px 10px;border-radius:6px;cursor:pointer;font-family:monospace">Clear</button>
+      <button onclick="toggleDebug()" style="background:#1a1a1a;border:1px solid #333;color:#888;font-size:18px;width:28px;height:28px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center">×</button>
+    </div>
+  </div>
+  <div id="dbg-panel" style="flex:1;overflow-y:auto;padding:8px;font-family:monospace;font-size:10px;color:#0f0;"></div>
 </div>
 
 <div id="root">
@@ -355,8 +376,7 @@ html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Nunit
   </div>
 
   <div class="screen hidden" id="who">
-    <div class="who-logo">AMMA</div>
-    <div class="who-tag">The Purple &amp; The Grey</div>
+    <div class="who-logo">AMMA</div><div class="who-tag">The Purple &amp; The Grey</div>
     <div class="who-q">Who's journaling?</div>
     <div class="who-hint">Tap your name and enter your PIN.</div>
     <div class="who-cards" id="who-cards"></div>
@@ -387,9 +407,14 @@ html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Nunit
     <div class="pin-av" id="pin-av"></div>
     <div class="pin-uname" id="pin-uname"></div>
     <div class="pin-prompt">Enter your PIN</div>
+    <!-- Hidden input for physical keyboard entry -->
+    <input id="pin-kb-input" type="password" inputmode="numeric" maxlength="4"
+      style="position:absolute;opacity:0;width:1px;height:1px;pointer-events:none"
+      autocomplete="current-password"/>
     <div class="pin-dots" id="pin-dots"></div>
     <div class="pin-err-msg" id="pin-err-msg"></div>
     <div class="pin-grid" id="pin-grid"></div>
+    <div style="font-size:11px;color:var(--g2);margin-top:16px;text-align:center">You can also type from your keyboard</div>
     <button class="pin-back" id="pin-back">← Back</button>
   </div>
 
@@ -403,14 +428,12 @@ html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Nunit
       </div></div>
       <div class="elist" id="mine-list"></div>
     </div>
-
     <!-- TOGETHER -->
     <div class="app-body hidden" id="tab-together">
       <div class="hdr"><div class="pg-sup">Connected souls</div><div class="pg-title">Together</div>
         <div class="pg-sub" id="together-sub"></div></div>
       <div id="together-body"></div>
     </div>
-
     <!-- PROFILE -->
     <div class="app-body hidden" id="tab-profile">
       <div class="hdr"><div class="pg-sup">Your space</div><div class="pg-title">Profile</div></div>
@@ -423,9 +446,8 @@ html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Nunit
         <div class="p-stat"><span class="p-sl">Shared with me</span><span class="p-sv" id="ps-recv">0</span></div>
         <div style="height:10px"></div>
         <button class="btn-sec" onclick="openChangePinModal()">🔑 Change PIN</button>
-        <button class="btn-sec" style="margin-top:10px" onclick="openMoodCustomiser()">😊 Customise My Moods</button>
         <button class="btn-dng" onclick="signOut()">Switch Profile</button>
-        <button id="dbg-toggle-btn" style="width:100%;background:none;border:1px solid #333;border-radius:var(--rs);padding:10px;color:var(--g2);font-family:'Nunito',sans-serif;font-size:12px;cursor:pointer;margin-top:8px" onclick="toggleDebug()">🔧 Debug Log (off)</button>
+        <button id="dbg-toggle-btn" style="width:100%;background:none;border:1px solid #222;border-radius:var(--rs);padding:10px;color:var(--g2);font-family:'Nunito',sans-serif;font-size:12px;cursor:pointer;margin-top:8px" onclick="toggleDebug()">🔧 Debug Log (off)</button>
       </div>
     </div>
 
@@ -436,58 +458,80 @@ html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Nunit
     </div>
     <button class="fab" id="fab" onclick="openNewModal()">+</button>
 
-    <!-- NEW ENTRY MODAL -->
+    <!-- NEW ENTRY -->
     <div class="overlay hidden" id="modal-new">
       <div class="sheet"><div class="mhandle"></div>
         <div class="mhdr"><div class="mtitle">New Entry</div><button class="mclose" onclick="closeNew()">×</button></div>
-        <div class="mbody">
+        <div class="mbody" style="position:relative">
           <span class="sml-lbl">Mood</span>
-          <div class="mood-row" id="new-moods"></div>
+          <div class="mood-bar">
+            <div class="mood-current" id="new-mood-display">💜</div>
+            <div class="mood-input-wrap">
+              <input class="mood-input" id="new-mood-input"
+                placeholder="Type any emoji from your keyboard…"
+                maxlength="8" autocorrect="off" autocomplete="off"
+                inputmode="text"
+                oninput="onMoodInput('new',this.value)"/>
+              <div class="mood-hint">iPhone: tap 🌐 on keyboard · PC: Win+. or Cmd+Ctrl+Space</div>
+            </div>
+          </div>
           <input class="title-in" id="new-title" placeholder="Give this moment a title…"/>
           <textarea class="body-ta" id="new-body" placeholder="Write freely. This space is yours alone…"></textarea>
+          <div class="wc-bar"><span class="wc-label" id="new-wc">0 words</span></div>
           <div class="divider"></div>
-          <span class="sml-lbl">Media (photos, video, voice notes)</span>
+          <span class="sml-lbl">Attachments</span>
           <div class="media-add-row">
-            <button class="media-add-btn" onclick="triggerMedia('image','new')">📷 Photo</button>
-            <button class="media-add-btn" onclick="triggerMedia('video','new')">🎥 Video</button>
-            <button class="media-add-btn" id="new-rec-btn" onclick="toggleRecording('new')">🎙️ Voice Note</button>
+            <button class="media-add-btn" onclick="triggerFile('new','image/*')">📷 Photo</button>
+            <button class="media-add-btn" onclick="triggerFile('new','video/*')">🎥 Video</button>
+            <button class="media-add-btn" id="new-rec-btn" onclick="toggleRec('new')">🎙️ Voice Note</button>
           </div>
-          <input type="file" id="new-file-input" accept="image/*,video/*" style="display:none" multiple/>
-          <div class="media-preview-strip" id="new-media-preview"></div>
+          <input type="file" id="new-file-in" accept="image/*,video/*" style="display:none" multiple/>
+          <div class="media-preview-strip" id="new-media-strip"></div>
         </div>
-        <div class="mfoot"><button class="btn-p" id="btn-save-new" onclick="saveNewEntry()">Save Entry</button></div>
+        <div class="mfoot"><button class="btn-p" id="btn-save-new" onclick="saveNew()">Save Entry</button></div>
       </div>
     </div>
 
-    <!-- EDIT ENTRY MODAL -->
+    <!-- EDIT ENTRY -->
     <div class="overlay hidden" id="modal-edit">
       <div class="sheet"><div class="mhandle"></div>
         <div class="mhdr"><div class="mtitle">Edit Entry</div><button class="mclose" onclick="closeEdit()">×</button></div>
-        <div class="mbody">
+        <div class="mbody" style="position:relative">
           <span class="sml-lbl">Mood</span>
-          <div class="mood-row" id="edit-moods"></div>
+          <div class="mood-bar">
+            <div class="mood-current" id="edit-mood-display">💜</div>
+            <div class="mood-input-wrap">
+              <input class="mood-input" id="edit-mood-input"
+                placeholder="Type any emoji from your keyboard…"
+                maxlength="8" autocorrect="off" autocomplete="off"
+                inputmode="text"
+                oninput="onMoodInput('edit',this.value)"/>
+              <div class="mood-hint">iPhone: tap 🌐 on keyboard · PC: Win+. or Cmd+Ctrl+Space</div>
+            </div>
+          </div>
           <input class="title-in" id="edit-title"/>
           <textarea class="body-ta" id="edit-body"></textarea>
+          <div class="wc-bar"><span class="wc-label" id="edit-wc">0 words</span></div>
           <div class="divider"></div>
-          <span class="sml-lbl">Media</span>
+          <span class="sml-lbl">Attachments</span>
           <div class="media-add-row">
-            <button class="media-add-btn" onclick="triggerMedia('image','edit')">📷 Photo</button>
-            <button class="media-add-btn" onclick="triggerMedia('video','edit')">🎥 Video</button>
-            <button class="media-add-btn" id="edit-rec-btn" onclick="toggleRecording('edit')">🎙️ Voice Note</button>
+            <button class="media-add-btn" onclick="triggerFile('edit','image/*')">📷 Photo</button>
+            <button class="media-add-btn" onclick="triggerFile('edit','video/*')">🎥 Video</button>
+            <button class="media-add-btn" id="edit-rec-btn" onclick="toggleRec('edit')">🎙️ Voice Note</button>
           </div>
-          <input type="file" id="edit-file-input" accept="image/*,video/*" style="display:none" multiple/>
-          <div class="media-preview-strip" id="edit-media-preview"></div>
+          <input type="file" id="edit-file-in" accept="image/*,video/*" style="display:none" multiple/>
+          <div class="media-preview-strip" id="edit-media-strip"></div>
         </div>
         <div class="mfoot"><button class="btn-p" id="btn-save-edit" onclick="saveEdit()">Save Changes</button></div>
       </div>
     </div>
 
-    <!-- VIEW ENTRY MODAL -->
+    <!-- VIEW ENTRY -->
     <div class="overlay hidden" id="modal-view">
       <div class="sheet"><div class="mhandle"></div>
         <div class="mhdr">
           <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:0">
-            <span id="v-mood" style="font-size:22px"></span>
+            <span id="v-mood" style="font-size:24px"></span>
             <span id="v-author" style="font-size:11px;color:var(--g3)"></span></div>
           <div style="display:flex;gap:8px;flex-shrink:0" id="v-actions"></div>
         </div>
@@ -496,8 +540,10 @@ html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Nunit
           <div class="v-title" id="v-title"></div>
           <div class="v-date" id="v-date"></div>
           <div class="v-body" id="v-body"></div>
+          <div class="v-wc" id="v-wc"></div>
           <div id="v-media"></div>
           <div id="v-share"></div>
+          <div id="v-comments"></div>
         </div>
       </div>
     </div>
@@ -508,19 +554,10 @@ html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Nunit
         <div class="mhdr"><div class="mtitle">Change PIN</div><button class="mclose" onclick="closeChangePinModal()">×</button></div>
         <div class="mbody">
           <div class="pin-change-wrap">
-            <p style="font-size:13px;color:var(--g3);line-height:1.7;margin-bottom:22px">Enter your current PIN to verify it's you, then choose a new one.</p>
-            <div class="pin-change-row">
-              <span class="pin-change-lbl">Current PIN</span>
-              <div class="pin-dots" id="cp-dots1" style="margin-bottom:0"></div>
-            </div>
-            <div class="pin-change-row" id="cp-new-row" style="display:none">
-              <span class="pin-change-lbl">New PIN</span>
-              <div class="pin-dots" id="cp-dots2" style="margin-bottom:0"></div>
-            </div>
-            <div class="pin-change-row" id="cp-confirm-row" style="display:none">
-              <span class="pin-change-lbl">Confirm New PIN</span>
-              <div class="pin-dots" id="cp-dots3" style="margin-bottom:0"></div>
-            </div>
+            <p style="font-size:13px;color:var(--g3);line-height:1.7;margin-bottom:22px">Verify your current PIN, then choose a new one.</p>
+            <div class="pin-change-row"><span class="pin-change-lbl">Current PIN</span><div class="pin-dots" id="cp-dots1" style="margin-bottom:0"></div></div>
+            <div class="pin-change-row" id="cp-new-row" style="display:none"><span class="pin-change-lbl">New PIN</span><div class="pin-dots" id="cp-dots2" style="margin-bottom:0"></div></div>
+            <div class="pin-change-row" id="cp-confirm-row" style="display:none"><span class="pin-change-lbl">Confirm New PIN</span><div class="pin-dots" id="cp-dots3" style="margin-bottom:0"></div></div>
             <div class="pin-err-msg" id="cp-err" style="height:auto;margin-bottom:12px"></div>
             <div class="pin-status" id="cp-status"></div>
             <div class="pin-grid" id="cp-pin-grid" style="margin-top:16px"></div>
@@ -528,49 +565,6 @@ html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Nunit
         </div>
       </div>
     </div>
-
-    <!-- MOOD CUSTOMISER MODAL -->
-    <div class="overlay hidden" id="modal-mood-custom">
-      <div class="sheet"><div class="mhandle"></div>
-        <div class="mhdr">
-          <div><div class="mtitle">My Moods</div>
-            <div style="font-size:11px;color:var(--g3);margin-top:2px">Pick up to 28 emojis for your mood palette</div></div>
-          <button class="mclose" onclick="closeMoodCustomiser()">×</button>
-        </div>
-        <div class="mbody" style="padding:0">
-          <div class="emoji-cat-row" id="emoji-cat-row"></div>
-          <div class="emoji-grid-wrap"><div class="emoji-grid" id="emoji-grid"></div></div>
-        </div>
-        <div class="emoji-picker-foot">
-          <div class="sel-display">
-            <span id="mood-sel-preview" style="font-size:22px;display:flex;gap:4px;flex-wrap:wrap"></span>
-            <span style="font-size:12px;color:var(--g3);margin-left:4px" id="mood-sel-count"></span>
-          </div>
-          <button class="btn-p" onclick="saveMoodCustom()">Save My Moods</button>
-          <button class="btn-ghost" onclick="resetMoodCustom()">Reset to defaults</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- INLINE EMOJI PICKER (for new/edit mood selection) -->
-    <div class="emoji-picker-overlay hidden" id="emoji-inline-picker">
-      <div class="emoji-picker-sheet">
-        <div class="emoji-picker-hdr">
-          <div class="emoji-picker-title">Choose a mood</div>
-          <div class="emoji-picker-sub">Tap any emoji · swipe categories</div>
-        </div>
-        <div class="emoji-cat-row" id="eip-cat-row"></div>
-        <div class="emoji-grid-wrap"><div class="emoji-grid" id="eip-grid"></div></div>
-        <div class="emoji-picker-foot">
-          <div class="sel-display">
-            <span class="sel-display-emoji" id="eip-preview">💜</span>
-            <span class="sel-display-lbl">Selected mood</span>
-          </div>
-          <button class="btn-p" id="eip-confirm-btn">Use this mood</button>
-        </div>
-      </div>
-    </div>
-
   </div>
 </div>
 
@@ -584,143 +578,158 @@ const ACCESS_PASSWORD = 'ammajournal2025';
 const KVDB_BUCKET     = 'SWDmT8oG9PZb67kXtcsu1S';
 
 // ════════════════════════════════════════════════════
-// PUSH NOTIFICATION SCAFFOLD
-// ⚠️  NOT YET ACTIVE — wired up and ready for when
-//     a real backend (e.g. Firebase FCM) is connected.
-//     All functions are defined but no-op until then.
+// PUSH NOTIFICATION SCAFFOLD (wired, not yet active)
 // ════════════════════════════════════════════════════
-const PUSH = {
-  // Call this on login to register device for notifications
-  async register(userId) {
-    // TODO: Request Notification permission, get FCM token,
-    // send token to backend associated with userId
-    // Example flow when backend is ready:
-    // const permission = await Notification.requestPermission();
-    // if (permission !== 'granted') return;
-    // const token = await getFCMToken();
-    // await backend.saveToken(userId, token);
-    console.log('[PUSH] scaffold: register called for', userId, '— not yet active');
-  },
-
-  // Call this when an entry is shared with someone
-  async notifyShared(toUserId, fromDisplayName, entryTitle) {
-    // TODO: Call your backend endpoint that triggers FCM
-    // await fetch('/api/notify', { method:'POST', body: JSON.stringify({
-    //   to: toUserId,
-    //   title: `${fromDisplayName} shared something with you 💜`,
-    //   body: entryTitle
-    // })});
-    console.log('[PUSH] scaffold: notifyShared →', toUserId, fromDisplayName, entryTitle, '— not yet active');
-  },
-
-  // Call this when a scheduled entry becomes available
-  async notifyScheduledUnlock(toUserId, fromDisplayName, entryTitle, unlockDate) {
-    // TODO: Schedule via backend (e.g. a cron job checks unlock dates)
-    // await fetch('/api/schedule-notify', { method:'POST', body: JSON.stringify({
-    //   to: toUserId, from: fromDisplayName,
-    //   title: entryTitle, unlockAt: unlockDate
-    // })});
-    console.log('[PUSH] scaffold: notifyScheduledUnlock →', toUserId, unlockDate, '— not yet active');
-  },
-
-  // Call this when a timed access window is about to expire
-  async notifyExpiringAccess(toUserId, entryTitle, expiresAt) {
-    // TODO: Same pattern — backend schedules a reminder push
-    console.log('[PUSH] scaffold: notifyExpiringAccess →', toUserId, expiresAt, '— not yet active');
-  }
+const PUSH={
+  async register(uid){console.log('[PUSH] register',uid,'— not active');},
+  async notifyShared(to,from,title){console.log('[PUSH] notifyShared',to,from,title,'— not active');},
+  async notifyScheduledUnlock(to,from,title,date){console.log('[PUSH] scheduled',date,'— not active');},
+  async notifyExpiringAccess(to,title,exp){console.log('[PUSH] expiring',exp,'— not active');}
 };
 
 // ════════════════════════════════════════════════════
-// SHARED STORAGE (kvdb.io)
+// DEBUG
 // ════════════════════════════════════════════════════
-const KV = `https://kvdb.io/${KVDB_BUCKET}`;
-// ── Debug log (visible in-app, toggle with window.AMMA_DEBUG=true) ──
 window.AMMA_DEBUG=false;
-function dbg(...args){
+function dbg(...a){
   if(!window.AMMA_DEBUG)return;
-  const msg=args.map(a=>typeof a==='object'?JSON.stringify(a):String(a)).join(' ');
+  const msg=a.map(x=>typeof x==='object'?JSON.stringify(x):String(x)).join(' ');
   console.log('[AMMA]',msg);
-  const panel=document.getElementById('dbg-panel');
-  if(panel){const l=document.createElement('div');l.style.cssText='font-size:10px;border-bottom:1px solid #333;padding:2px 0;word-break:break-all';l.textContent=new Date().toLocaleTimeString()+' '+msg;panel.insertBefore(l,panel.firstChild);if(panel.children.length>40)panel.lastChild.remove();}
+  const p=document.getElementById('dbg-panel');
+  if(p){
+    const l=document.createElement('div');
+    l.style.cssText='border-bottom:1px solid #111;padding:3px 0;word-break:break-all;color:'+(msg.includes('fail')||msg.includes('err')?'#f55':msg.includes(' ok')?'#0f0':'#aaa');
+    l.textContent=new Date().toLocaleTimeString()+' '+msg;
+    p.insertBefore(l,p.firstChild);
+    if(p.children.length>80)p.lastChild.remove();
+  }
+}
+window.toggleDebug=function(){
+  window.AMMA_DEBUG=!window.AMMA_DEBUG;
+  const drawer=document.getElementById('dbg-drawer');
+  const overlay=document.getElementById('dbg-overlay');
+  const btn=document.getElementById('dbg-toggle-btn');
+  if(drawer){
+    drawer.style.display='flex';overlay.style.display='block';
+    requestAnimationFrame(()=>{drawer.style.transform=window.AMMA_DEBUG?'translateX(0)':'translateX(100%)';});
+    if(!window.AMMA_DEBUG)setTimeout(()=>{drawer.style.display='none';overlay.style.display='none';},310);
+  }
+  if(btn)btn.textContent='🔧 Debug Log ('+(window.AMMA_DEBUG?'ON':'off')+')';
+  if(window.AMMA_DEBUG){
+    document.getElementById('dbg-lbl').textContent='bucket:'+KVDB_BUCKET.slice(0,8)+'... user:'+(CU?.username?.slice(0,10)||'none');
+    dbg('=== DEBUG ON === user:'+(CU?.username||'none'));
+  }
+};
+window.clearDebug=function(){const p=document.getElementById('dbg-panel');if(p)p.innerHTML='';};
+
+// ════════════════════════════════════════════════════
+// INDEXEDDB — for media (no size limit, device-local)
+// Media is stored locally per device. When sharing,
+// the author's device re-encodes and stores shared
+// media in kvdb in chunks ONLY if under 200KB total.
+// Large media (photos/video) cannot cross devices via
+// kvdb — this is a known limitation of the no-server
+// architecture. Voice notes (small) will sync fine.
+// ════════════════════════════════════════════════════
+let idb=null;
+async function openIDB(){
+  if(idb)return idb;
+  return new Promise((res,rej)=>{
+    const req=indexedDB.open('amma_media',1);
+    req.onupgradeneeded=e=>{
+      const db=e.target.result;
+      if(!db.objectStoreNames.contains('media'))
+        db.createObjectStore('media');
+    };
+    req.onsuccess=e=>{idb=e.target.result;res(idb);};
+    req.onerror=e=>rej(e);
+  });
+}
+async function idbGet(key){
+  const db=await openIDB();
+  return new Promise((res,rej)=>{
+    const tx=db.transaction('media','readonly');
+    const req=tx.objectStore('media').get(key);
+    req.onsuccess=()=>res(req.result||null);
+    req.onerror=()=>res(null);
+  });
+}
+async function idbSet(key,val){
+  const db=await openIDB();
+  return new Promise((res,rej)=>{
+    const tx=db.transaction('media','readwrite');
+    tx.objectStore('media').put(val,key);
+    tx.oncomplete=()=>res(true);
+    tx.onerror=()=>rej(tx.error);
+  });
+}
+async function idbDel(key){
+  const db=await openIDB();
+  return new Promise(res=>{
+    const tx=db.transaction('media','readwrite');
+    tx.objectStore('media').delete(key);
+    tx.oncomplete=()=>res();
+    tx.onerror=()=>res();
+  });
 }
 
-// ── localStorage helpers (used only as write-through cache) ──
+// ════════════════════════════════════════════════════
+// KVDB — text/JSON data only (no media blobs)
+// ════════════════════════════════════════════════════
+const KV=`https://kvdb.io/${KVDB_BUCKET}`;
 function lsGet(k){try{const v=localStorage.getItem('ac_'+k);return v?JSON.parse(v):null;}catch{return null;}}
 function lsSet(k,v){try{localStorage.setItem('ac_'+k,JSON.stringify(v));}catch{}}
 function lsDel(k){try{localStorage.removeItem('ac_'+k);}catch{}}
 
-// ── kvdb.io helpers ──
-// kvGet: ALWAYS fetches from network first. Falls back to localStorage only on network failure.
-// kvSet: writes localStorage immediately, then awaits network write. Retries once on failure.
-// kvDel: removes localStorage, then deletes from network.
 async function kvGet(key){
   dbg('GET',key);
   try{
     const r=await fetch(`${KV}/${encodeURIComponent(key)}`,{cache:'no-store'});
-    if(r.status===404){dbg('GET 404',key);return null;}
-    if(!r.ok){dbg('GET err',r.status,key);return lsGet(key);}
+    if(r.status===404){return null;}
+    if(!r.ok){dbg('GET err',r.status);return lsGet(key);}
     const t=await r.text();
-    if(!t||t==='null'||t===''){dbg('GET empty',key);return null;}
-    const v=JSON.parse(t);
-    lsSet(key,v); // update cache with fresh value
-    dbg('GET ok',key,'len='+(t.length));
-    return v;
-  }catch(e){
-    dbg('GET fail',key,e.message);
-    return lsGet(key); // only fall back to cache if network totally unreachable
-  }
+    if(!t||t==='null'||t==='')return null;
+    const v=JSON.parse(t);lsSet(key,v);dbg('GET ok',key,'len='+t.length);return v;
+  }catch(e){dbg('GET fail',e.message);return lsGet(key);}
 }
-
 async function kvSet(key,value){
   dbg('SET',key);
-  lsSet(key,value); // write cache immediately so UI stays responsive
+  lsSet(key,value);
   try{
-    const r=await fetch(`${KV}/${encodeURIComponent(key)}`,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(value)
-    });
+    const r=await fetch(`${KV}/${encodeURIComponent(key)}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(value)});
     if(!r.ok){
-      dbg('SET err',r.status,key,'retrying...');
-      // Retry once
-      await new Promise(res=>setTimeout(res,500));
-      const r2=await fetch(`${KV}/${encodeURIComponent(key)}`,{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify(value)
-      });
-      if(!r2.ok) dbg('SET retry failed',r2.status,key);
-      else dbg('SET retry ok',key);
-    } else {
-      dbg('SET ok',key);
-    }
-  }catch(e){
-    dbg('SET fail',key,e.message);
-  }
+      dbg('SET err',r.status,'retrying');
+      await new Promise(res=>setTimeout(res,600));
+      const r2=await fetch(`${KV}/${encodeURIComponent(key)}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(value)});
+      dbg(r2.ok?'SET retry ok':'SET retry fail',r2.status);
+    } else dbg('SET ok',key);
+  }catch(e){dbg('SET fail',e.message);}
 }
-
 async function kvDel(key){
-  dbg('DEL',key);
   lsDel(key);
-  try{
-    await fetch(`${KV}/${encodeURIComponent(key)}`,{method:'DELETE'});
-    dbg('DEL ok',key);
-  }catch(e){dbg('DEL fail',key,e.message);}
+  try{await fetch(`${KV}/${encodeURIComponent(key)}`,{method:'DELETE'});}catch{}
 }
 
-const K_USERS   = 'amma_j_users';
-const K_META    = u      => 'amma_j_meta_'+sl(u);
-const K_BODY    = (u,id) => 'amma_j_body_'+sl(u)+'_'+id;
-const K_SHAR    = (u,id,r)=> 'amma_j_shar_'+sl(u)+'_'+id+'_'+sl(r);
-const K_MEDIA   = (u,id) => 'amma_j_media_'+sl(u)+'_'+id;
+const K_USERS = 'amma_j_users';
+const K_META  = u    => 'amma_j_meta_'+sl(u);
+const K_BODY  = (u,id)=> 'amma_j_body_'+sl(u)+'_'+id;
+const K_SHAR  = (u,id,r)=> 'amma_j_shar_'+sl(u)+'_'+id+'_'+sl(r);
+const K_MEDIA = (u,id)  => 'amma_j_media_'+sl(u)+'_'+id;   // base64 media (small files only)
+const K_COMM  = (u,id)  => 'amma_j_comm_'+sl(u)+'_'+id;    // comments on an entry
+// Legacy alias — kept so old saved data still loads
+const IDB_MEDIA = K_MEDIA;
 
 // ════════════════════════════════════════════════════
-// CRYPTO (AES-256-GCM + PBKDF2)
+// CRYPTO
 // ════════════════════════════════════════════════════
-const ET=new TextEncoder(),DT=new TextDecoder(),ITER=310000;
+const ET=new TextEncoder(),DT=new TextDecoder();
+const ITER_ENC = 310000; // high iterations for entry encryption — infrequent, security-critical
+const ITER_PIN = 100000; // lower iterations for PIN verify token — must feel instant on mobile
+// Backwards compat alias so any remaining references to ITER still work
+const ITER = ITER_ENC;
 async function deriveKey(pin,salt){
   const s=h2b(salt),r=await crypto.subtle.importKey('raw',ET.encode(pin),'PBKDF2',false,['deriveKey']);
-  return crypto.subtle.deriveKey({name:'PBKDF2',salt:s,iterations:ITER,hash:'SHA-256'},r,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);
+  return crypto.subtle.deriveKey({name:'PBKDF2',salt:s,iterations:ITER_ENC,hash:'SHA-256'},r,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);
 }
 async function aesEnc(plain,pin,salt){
   const key=await deriveKey(pin,salt),iv=crypto.getRandomValues(new Uint8Array(12));
@@ -732,8 +741,10 @@ async function aesDec(cipher,pin,salt){
     const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:h2b(ivH)},key,h2b(ctH));return DT.decode(pt);}catch{return null;}
 }
 async function makeToken(pin,salt){
+  // Uses ITER_PIN (100k) — fast enough for real-time login but still resistant to brute force
+  // Entry content uses ITER_ENC (310k) separately — users never wait for that during login
   const vs=h2b(salt+'7665726966'),r=await crypto.subtle.importKey('raw',ET.encode(pin),'PBKDF2',false,['deriveBits']);
-  const b=await crypto.subtle.deriveBits({name:'PBKDF2',salt:vs,iterations:ITER,hash:'SHA-256'},r,256);
+  const b=await crypto.subtle.deriveBits({name:'PBKDF2',salt:vs,iterations:ITER_PIN,hash:'SHA-256'},r,256);
   return b2h(new Uint8Array(b));
 }
 async function sha256(s){const b=await crypto.subtle.digest('SHA-256',ET.encode(s));return b2h(new Uint8Array(b));}
@@ -745,10 +756,6 @@ function randSalt(){return b2h(crypto.getRandomValues(new Uint8Array(32)));}
 // HELPERS
 // ════════════════════════════════════════════════════
 const MAX_USERS=2;
-// 28 moods covering the full emotional spectrum
-// Users can customise their own selection (saved per-profile)
-const DEFAULT_MOODS=['💜','🥰','😊','😌','🤩','😂','😢','😭','💔','🥺','😔','😞','😡','🤬','😤','😠','😰','😨','🫨','😟','😶','🫥','😑','😐','🌙','✨','🌊','🔥'];
-let MOODS=[...DEFAULT_MOODS]; // overridden by user's saved custom set
 const COLORS=['#7C3AED','#DB2777','#0891B2','#059669','#D97706','#9333EA'];
 const SHARE_SEC='amma_purple_grey_2025';
 const sl=s=>String(s).replace(/[^a-z0-9]/gi,'_').toLowerCase();
@@ -758,67 +765,74 @@ const fd=iso=>new Date(iso).toLocaleDateString('en-US',{month:'short',day:'numer
 const ft=iso=>new Date(iso).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
 const fdt=iso=>new Date(iso).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
 const $=id=>document.getElementById(id);
-const sh=id=>$(id).classList.remove('hidden');
-const hi=id=>$(id).classList.add('hidden');
+const sh=id=>$(id)?.classList.remove('hidden');
+const hi=id=>$(id)?.classList.add('hidden');
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 function showScreen(id){['splash','who','setup','pin-screen','app'].forEach(s=>s===id?sh(s):hi(s));}
 function syncCover(on){on?$('sync-cover').classList.remove('gone'):$('sync-cover').classList.add('gone');}
+function wc(text){return text.trim()?text.trim().split(/\s+/).filter(w=>w.length>0).length:0;}
 
-// Sharing schedule helpers
-function isScheduledUnlocked(entry){
-  if(!entry.shareSchedule?.scheduleDate) return true; // no schedule = unlocked
-  return new Date() >= new Date(entry.shareSchedule.scheduleDate);
-}
-function isTimedAccessValid(entry){
-  if(!entry.shareSchedule?.accessStart) return true; // no timed = always valid
-  const start=new Date(entry.shareSchedule.accessStart);
-  const now=new Date();
-  if(now<start) return false;
-  if(entry.shareSchedule.accessEnd && now>new Date(entry.shareSchedule.accessEnd)) return false;
-  return true;
-}
-function shareAccessible(entry){
-  // Entry is shared AND access window is valid
-  return isScheduledUnlocked(entry) && isTimedAccessValid(entry);
-}
-function shareExpired(entry){
-  if(!entry.shareSchedule?.accessEnd) return false;
-  return new Date()>new Date(entry.shareSchedule.accessEnd);
-}
-function formatTimeRemaining(isoEnd){
-  const ms=new Date(isoEnd)-new Date();
-  if(ms<=0) return 'expired';
-  const h=Math.floor(ms/3600000);
-  const m=Math.floor((ms%3600000)/60000);
-  if(h>24) return `${Math.floor(h/24)}d ${h%24}h remaining`;
-  if(h>0) return `${h}h ${m}m remaining`;
-  return `${m}m remaining`;
-}
+// Schedule helpers
+function isScheduledUnlocked(e){if(!e.shareSchedule?.scheduleDate)return true;return new Date()>=new Date(e.shareSchedule.scheduleDate);}
+function isTimedValid(e){if(!e.shareSchedule?.accessStart)return true;const s=new Date(e.shareSchedule.accessStart),n=new Date();if(n<s)return false;if(e.shareSchedule.accessEnd&&n>new Date(e.shareSchedule.accessEnd))return false;return true;}
+function shareAccessible(e){return isScheduledUnlocked(e)&&isTimedValid(e);}
+function shareExpired(e){if(!e.shareSchedule?.accessEnd)return false;return new Date()>new Date(e.shareSchedule.accessEnd);}
+function timeRemaining(iso){const ms=new Date(iso)-new Date();if(ms<=0)return 'expired';const h=Math.floor(ms/3600000),m=Math.floor((ms%3600000)/60000);if(h>24)return`${Math.floor(h/24)}d ${h%24}h left`;if(h>0)return`${h}h ${m}m left`;return`${m}m left`;}
 
 // ════════════════════════════════════════════════════
 // STATE
 // ════════════════════════════════════════════════════
-let CU=null,CP=null,MY=[],OUs=[],OD={},AE=null,AC='',APT='',CDel=false,PendingUser=null;
+let CU=null,CP=null,MY=[],OUs=[],OD={};
+let AE=null,AC='',APT='',CDel=false,PendingUser=null;
 let SP1='',SP2='',SPPhase=1;
-// Media state for compose
-let newMediaItems=[],editMediaItems=[];
-// Recording state
+let newMedia=[],editMedia=[],viewMedia=[];  // arrays of {type,dataUrl,mimeType,name}
 let mediaRecorder=null,recChunks=[],recMode=null,recStream=null;
+let selMoodNew='💜',selMoodEdit='💜';
+
+// Called whenever the mood text input changes — extracts the first emoji found
+window.onMoodInput=function(mode, val){
+  // Extract first emoji character sequence from input
+  // Emoji regex covers most unicode emoji ranges
+  const emojiMatch = val.match(/(\p{Emoji_Presentation}|\p{Emoji}️|\p{Emoji_Modifier_Base})/u);
+  const emoji = emojiMatch ? emojiMatch[0] : null;
+  if(emoji){
+    if(mode==='new'){
+      selMoodNew=emoji;
+      $('new-mood-display').textContent=emoji;
+    } else {
+      selMoodEdit=emoji;
+      $('edit-mood-display').textContent=emoji;
+    }
+  }
+};
+let editingSchedule={mode:'now',scheduleDate:null,accessEnd:null,durChip:null};
+
+// PIN change state
+let cpPhase='current',cpCurrent='',cpNew='',cpConfirm='';
 
 // ════════════════════════════════════════════════════
 // BOOT / GATE
 // ════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded',async()=>{
-  const stored=sessionStorage.getItem('amma_gate');
   const expected=await sha256(ACCESS_PASSWORD+'_ok');
+  const stored=sessionStorage.getItem('amma_gate')||localStorage.getItem('amma_gate_persist');
   if(stored===expected){$('panel-gate').classList.add('gone');await startApp();}
   else{
     $('gate-btn').onclick=tryUnlock;
     $('gate-input').addEventListener('keydown',e=>{if(e.key==='Enter')tryUnlock();});
-    setTimeout(()=>$('gate-input').focus(),350);
+    setTimeout(()=>$('gate-input')?.focus(),350);
   }
-  $('lb-close').onclick=closeLightbox;
   $('lightbox').addEventListener('click',e=>{if(e.target===$('lightbox'))closeLightbox();});
+  document.addEventListener('click',e=>{
+    // Close emoji pickers on outside click
+    ['new','edit'].forEach(mode=>{
+      const picker=$(  `emoji-picker-${mode}`);
+      if(picker&&picker.style.display!=='none'){
+        if(!picker.contains(e.target)&&e.target.id!==`${mode}-mood-display`&&e.target.id!==`${mode}-mood-input`)
+          picker.style.display='none';
+      }
+    });
+  });
 });
 
 async function tryUnlock(){
@@ -828,7 +842,11 @@ async function tryUnlock(){
   const ih=await sha256(val),ch=await sha256(ACCESS_PASSWORD);
   $('gate-btn').innerHTML='Unlock';$('gate-btn').disabled=false;
   if(ih===ch){
-    sessionStorage.setItem('amma_gate',await sha256(ACCESS_PASSWORD+'_ok'));
+    const token=await sha256(ACCESS_PASSWORD+'_ok');
+    // Store in BOTH sessionStorage AND localStorage so they never need to
+    // re-enter the site password on the same device after the first time
+    sessionStorage.setItem('amma_gate',token);
+    localStorage.setItem('amma_gate_persist',token);
     $('panel-gate').classList.add('gone');await startApp();
   } else {
     $('gate-err').textContent='Incorrect password — try again.';
@@ -841,15 +859,36 @@ async function tryUnlock(){
 
 async function startApp(){
   showScreen('splash');
+  // Pre-warm the WebCrypto PBKDF2 engine so the first PIN check isn't cold-start slow
+  // This runs in the background during the splash screen — user never waits for it
+  (async()=>{
+    try{
+      const dummy=new Uint8Array(16);
+      const k=await crypto.subtle.importKey('raw',dummy,'PBKDF2',false,['deriveBits']);
+      await crypto.subtle.deriveBits({name:'PBKDF2',salt:dummy,iterations:1,hash:'SHA-256'},k,128);
+    }catch{}
+  })();
   buildColors();buildSetupGrid();buildPinGrid();
-  await loadUserMoods();
-  buildMoodTrigger('new');
-  buildMoodTrigger('edit');
+  setupMoodInput('new');setupMoodInput('edit');
+  setupWordCount('new');setupWordCount('edit');
   $('su-back').onclick=()=>{resetSetup();showScreen('who');};
+  // Physical keyboard for PIN entry
+  document.addEventListener('keydown', handlePinKeyboard);
+  // Hidden input for mobile keyboard trigger
+  const ki=$('pin-kb-input');
+  if(ki){
+    ki.addEventListener('input', e=>{
+      const val=e.target.value.replace(/\D/g,'').slice(0,4);
+      ki.value=val;
+      // Sync digits to PinBuf
+      PinBuf='';
+      for(const ch of val) pinDigit(ch);
+    });
+  }
   $('su-submit').onclick=submitSetup;
   $('pin-back').onclick=()=>{PendingUser=null;showScreen('who');};
-  $('new-file-input').addEventListener('change',e=>handleFileSelect(e,'new'));
-  $('edit-file-input').addEventListener('change',e=>handleFileSelect(e,'edit'));
+  $('new-file-in').addEventListener('change',e=>handleFiles(e,'new'));
+  $('edit-file-in').addEventListener('change',e=>handleFiles(e,'edit'));
   $('modal-new').addEventListener('click',e=>{if(e.target===$('modal-new'))closeNew();});
   $('modal-edit').addEventListener('click',e=>{if(e.target===$('modal-edit'))closeEdit();});
   $('modal-view').addEventListener('click',e=>{if(e.target===$('modal-view')){hi('modal-view');CDel=false;}});
@@ -858,7 +897,7 @@ async function startApp(){
 }
 
 // ════════════════════════════════════════════════════
-// WHO SCREEN
+// WHO
 // ════════════════════════════════════════════════════
 async function renderWho(){
   const users=await kvGet(K_USERS)||[];
@@ -867,18 +906,15 @@ async function renderWho(){
     const d=document.createElement('div');d.className='who-card';d.style.animationDelay=(i*.08)+'s';
     d.innerHTML=`<div class="who-av" style="background:${u.color}">${ini(u.displayName)}</div>
       <div style="flex:1"><div class="who-name">${esc(u.displayName)}</div>
-      <div class="who-sub">Joined ${fd(u.joinedAt)}</div></div>
-      <div class="who-lock">🔒</div>`;
+      <div class="who-sub">Joined ${fd(u.joinedAt)}</div></div><div class="who-lock">🔒</div>`;
     d.onclick=()=>openPinScreen(u);c.appendChild(d);
   });
   if(users.length<MAX_USERS){
     const d=document.createElement('div');d.className='who-card who-add';d.style.animationDelay=(users.length*.08)+'s';
-    d.innerHTML=`<div class="who-add-ic">＋</div>
-      <div class="who-add-txt">${users.length===0?'Create the first profile':'Add the second journaler'}</div>`;
+    d.innerHTML=`<div class="who-add-ic">＋</div><div class="who-add-txt">${users.length===0?'Create the first profile':'Add the second journaler'}</div>`;
     d.onclick=()=>{resetSetup();showScreen('setup');};c.appendChild(d);
   } else {
-    const d=document.createElement('div');d.className='full-msg';
-    d.textContent='This journal belongs to just the two of you. 💜';c.appendChild(d);
+    const d=document.createElement('div');d.className='full-msg';d.textContent='This journal belongs to just the two of you. 💜';c.appendChild(d);
   }
 }
 
@@ -904,17 +940,17 @@ function renderSuDots(){
 function suDigit(d){
   hi('su-pin-err');
   if(SPPhase===1&&SP1.length<4){SP1+=d;if(SP1.length===4)SPPhase=2;}
-  else if(SPPhase===2&&SP2.length<4){SP2+=d;}
+  else if(SPPhase===2&&SP2.length<4)SP2+=d;
   renderSuDots();
   if(SP1.length===4&&SP2.length===4&&SP1!==SP2){
-    $('su-pin-err').textContent="PINs don't match — cleared, try again";sh('su-pin-err');
+    $('su-pin-err').textContent="PINs don't match — cleared";sh('su-pin-err');
     shakeEl('su-dots2');setTimeout(()=>{SP2='';SPPhase=2;renderSuDots();hi('su-pin-err');},900);
   }
 }
 function suDel(){
   if(SPPhase===2&&SP2.length>0)SP2=SP2.slice(0,-1);
-  else if(SPPhase===2&&SP2.length===0)SPPhase=1;
-  else if(SPPhase===1&&SP1.length>0)SP1=SP1.slice(0,-1);
+  else if(SPPhase===2)SPPhase=1;
+  else if(SP1.length>0)SP1=SP1.slice(0,-1);
   renderSuDots();
 }
 async function submitSetup(){
@@ -927,13 +963,12 @@ async function submitSetup(){
   const nu={username:uname,displayName:name,color:getColor(),salt,verifyToken:verify,joinedAt:new Date().toISOString()};
   const all=await kvGet(K_USERS)||[];
   syncCover(true);await kvSet(K_USERS,[...all,nu]);syncCover(false);
-  CU=nu;CP=SP1;MY=[];
-  await PUSH.register(CU.username); // scaffold — no-op until backend ready
-  await loadOthers();renderApp();resetSetup();showScreen('app');
+  CU=nu;CP=SP1;MY=[];await loadOthers();renderApp();resetSetup();showScreen('app');
+  await PUSH.register(CU.username);
 }
 
 // ════════════════════════════════════════════════════
-// PIN
+// PIN ENTRY
 // ════════════════════════════════════════════════════
 let PinBuf='';
 function buildPinGrid(){buildGrid('pin-grid',pinDigit,pinDel);}
@@ -949,34 +984,61 @@ function buildGrid(id,onDigit,onDel){
 }
 function mkDots(cid,val,isErr){
   const c=$(cid);
-  if(!c.children.length)for(let i=0;i<4;i++){const d=document.createElement('div');d.className='pin-dot';c.appendChild(d);}
-  Array.from(c.children).forEach((d,i)=>{d.className='pin-dot'+(i<val.length?' filled':'')+(isErr?' err-d':'');});
+  if(!c?.children.length)for(let i=0;i<4;i++){const d=document.createElement('div');d.className='pin-dot';c?.appendChild(d);}
+  Array.from(c?.children||[]).forEach((d,i)=>{d.className='pin-dot'+(i<val.length?' filled':'')+(isErr?' err-d':'');});
 }
 function openPinScreen(u){
   PendingUser=u;PinBuf='';
   $('pin-av').style.background=u.color;$('pin-av').textContent=ini(u.displayName);
   $('pin-uname').textContent=u.displayName;$('pin-err-msg').textContent='';
-  mkDots('pin-dots','',false);showScreen('pin-screen');
+  mkDots('pin-dots','',false);
+  // Show hidden text input for keyboard entry on desktop/physical keyboard
+  const ki=$('pin-kb-input');
+  if(ki){ki.value='';setTimeout(()=>ki.focus(),100);}
+  showScreen('pin-screen');
 }
-function pinDel(){PinBuf=PinBuf.slice(0,-1);mkDots('pin-dots',PinBuf,false);$('pin-err-msg').textContent='';}
+function pinDel(){
+  PinBuf=PinBuf.slice(0,-1);
+  mkDots('pin-dots',PinBuf,false);
+  $('pin-err-msg').textContent='';
+  const ki=$('pin-kb-input');if(ki)ki.value=PinBuf;
+}
 async function pinDigit(d){
   if(PinBuf.length>=4)return;
-  PinBuf+=d;mkDots('pin-dots',PinBuf,false);
+  PinBuf+=d;
+  mkDots('pin-dots',PinBuf,false);
+  const ki=$('pin-kb-input');if(ki)ki.value=PinBuf;
   if(PinBuf.length===4)await checkPin();
 }
+// Keyboard input handler — wired up in startApp
+function handlePinKeyboard(e){
+  if(document.getElementById('pin-screen').classList.contains('hidden'))return;
+  const d=e.key;
+  if(d>='0'&&d<='9'){pinDigit(d);}
+  else if(d==='Backspace'){pinDel();}
+  else if(d==='Enter'&&PinBuf.length===4){checkPin();}
+}
 async function checkPin(){
+  // Disable grid and show a subtle "checking" state immediately
   $('pin-grid').style.pointerEvents='none';
-  syncCover(true);
-  const users=await kvGet(K_USERS)||[];
-  syncCover(false);
-  const freshUser=users.find(u=>u.username===PendingUser.username)||PendingUser;
-  const tok=await makeToken(PinBuf,freshUser.salt);
+  $('pin-err-msg').textContent='Checking…';
+  // Small yield so the UI updates before the heavy crypto starts
+  await new Promise(r=>setTimeout(r,30));
+  // Fetch latest user record (in background during crypto warm-up)
+  const [users] = await Promise.all([
+    kvGet(K_USERS),
+    new Promise(r=>setTimeout(r,0)) // ensure UI has painted
+  ]);
+  const all = users||[];
+  const fresh=all.find(u=>u.username===PendingUser.username)||PendingUser;
+  const tok=await makeToken(PinBuf,fresh.salt);
   $('pin-grid').style.pointerEvents='';
-  if(tok===freshUser.verifyToken){
-    CU=freshUser;CP=PinBuf;PendingUser=null;
+  $('pin-err-msg').textContent='';
+  if(tok===fresh.verifyToken){
+    CU=fresh;CP=PinBuf;PendingUser=null;
     syncCover(true);MY=await kvGet(K_META(CU.username))||[];await loadOthers();syncCover(false);
-    await PUSH.register(CU.username); // scaffold
     renderApp();showScreen('app');
+    await PUSH.register(CU.username);
   } else {
     mkDots('pin-dots','',true);shakeEl('pin-dots');
     $('pin-err-msg').textContent='Wrong PIN — try again';
@@ -991,11 +1053,7 @@ async function loadOthers(){
   const all=await kvGet(K_USERS)||[];
   OUs=all.filter(u=>u.username!==CU.username);
   OD={};
-  for(const ou of OUs){
-    // Always clear the local cache for other users' meta so we get fresh data
-    lsDel(K_META(ou.username));
-    OD[ou.username]=await kvGet(K_META(ou.username))||[];
-  }
+  for(const ou of OUs){lsDel(K_META(ou.username));OD[ou.username]=await kvGet(K_META(ou.username))||[];}
 }
 function renderApp(){
   $('mine-av').style.background=CU.color;$('mine-av').textContent=ini(CU.displayName);
@@ -1003,14 +1061,11 @@ function renderApp(){
   $('prof-name').textContent=CU.displayName;$('prof-handle').textContent='Joined '+fd(CU.joinedAt);
   switchTab('mine');renderMine();
 }
-
 function renderMine(){
   const list=$('mine-list');list.innerHTML='';
   $('mine-count').textContent=MY.length+(MY.length===1?' entry':' entries');
   if(!MY.length){
-    list.innerHTML=`<div class="empty"><div class="empty-ic">📖</div>
-      <div class="empty-t">Your journal awaits</div>
-      <div class="empty-b">Tap + to write your first entry.<br>Everything is AES-256 encrypted.</div></div>`;
+    list.innerHTML=`<div class="empty"><div class="empty-ic">📖</div><div class="empty-t">Your journal awaits</div><div class="empty-b">Tap + to write your first entry.<br>Everything is AES-256 encrypted.</div></div>`;
     updateStats();return;
   }
   MY.forEach((e,i)=>{
@@ -1018,118 +1073,91 @@ function renderMine(){
     const on=e.sharedWith?.length>0;
     const hasSched=e.shareSchedule?.scheduleDate&&!isScheduledUnlocked(e);
     const hasTimed=e.shareSchedule?.accessEnd&&!shareExpired(e)&&on;
-    const hasExpired=shareExpired(e)&&on;
+    const hasExp=shareExpired(e)&&on;
     let badges='';
-    if(hasSched) badges+=`<div class="badge-sched">🕐 Unlocks ${fdt(e.shareSchedule.scheduleDate)}</div>`;
-    else if(hasExpired) badges+=`<div class="badge-expired">⏰ Access expired</div>`;
-    else if(hasTimed) badges+=`<div class="badge-timed">⏳ ${formatTimeRemaining(e.shareSchedule.accessEnd)}</div>`;
-    else if(on) badges+=`<div class="badge-on">🔓 Shared</div>`;
+    if(hasSched)badges+=`<div class="badge-sched">🕐 Unlocks ${fdt(e.shareSchedule.scheduleDate)}</div>`;
+    else if(hasExp)badges+=`<div class="badge-expired">⏰ Expired</div>`;
+    else if(hasTimed)badges+=`<div class="badge-timed">⏳ ${timeRemaining(e.shareSchedule.accessEnd)}</div>`;
+    else if(on)badges+=`<div class="badge-on">🔓 Shared</div>`;
     else badges+=`<div class="badge-off">🔒 Private</div>`;
-    const hasMedia=e.mediaCount&&e.mediaCount>0;
-    if(hasMedia) badges+=`<div class="badge-off">📎 ${e.mediaCount}</div>`;
-    d.innerHTML=`<div class="ec-row">
-      <div class="ec-mood">${e.mood}</div>
-      <div class="ec-meta">
-        <div class="ec-date">${fd(e.date)} · ${ft(e.date)}${e.edited?' · edited':''}</div>
-        <div class="ec-title">${esc(e.ptitle||'…')}</div>
-      </div></div>
+    if(e.mediaCount>0)badges+=`<div class="badge-off">📎 ${e.mediaCount}</div>`;
+    const words=e.contentWordCount||0;
+    d.innerHTML=`<div class="ec-row"><div class="ec-mood">${e.mood}</div>
+      <div class="ec-meta"><div class="ec-date">${fd(e.date)} · ${ft(e.date)}${e.edited?' · edited':''}</div>
+      <div class="ec-title">${esc(e.ptitle||'…')}</div>
+      ${words>0?`<div style="font-size:10px;color:var(--g2);margin-top:2px">${words} words</div>`:''}</div></div>
       <div class="ec-foot">${badges}</div>`;
     d.onclick=()=>openMyEntry(e);list.appendChild(d);
   });
   updateStats();
 }
-
 function updateStats(){
-  $('ps-total').textContent=MY.length;$('ps-shared').textContent=MY.filter(e=>e.sharedWith?.length>0).length;
+  $('ps-total').textContent=MY.length;
+  $('ps-shared').textContent=MY.filter(e=>e.sharedWith?.length>0).length;
   const recv=OUs.reduce((a,ou)=>a+(OD[ou.username]||[]).filter(m=>m.sharedWith?.includes(CU.username)&&shareAccessible(m)).length,0);
   $('ps-recv').textContent=recv;
 }
-
 window.switchTab=function(tab){
   ['mine','together','profile'].forEach(t=>{t===tab?sh('tab-'+t):hi('tab-'+t);$('ti-'+t)?.classList.toggle('on',t===tab);});
   tab==='mine'?sh('fab'):hi('fab');
-  if(tab==='together')renderTogether();if(tab==='profile')updateStats();
-}
-
+  if(tab==='together'){renderTogether();}
+  if(tab==='profile')updateStats();
+};
 async function renderTogether(){
   syncCover(true);await loadOthers();syncCover(false);
   const recv=OUs.reduce((a,ou)=>a+(OD[ou.username]||[]).filter(m=>m.sharedWith?.includes(CU.username)&&shareAccessible(m)).length,0);
   $('together-sub').textContent=recv+(recv===1?' entry':' entries')+' shared with you';
   const b=$('together-body');b.innerHTML='';
-  if(!OUs.length){
-    b.innerHTML=`<div class="no-peer">Your companion hasn't created a profile yet.<br>Have them open this link and tap<br>"Add the second journaler."</div>`;return;
-  }
+  if(!OUs.length){b.innerHTML=`<div class="no-peer">Your companion hasn't created a profile yet.<br>Have them open this link and tap<br>"Add the second journaler."</div>`;return;}
   OUs.forEach(ou=>{
     const metas=OD[ou.username]||[];
     const sec=document.createElement('div');sec.className='u-sec';
-    const visibleCount=metas.filter(m=>m.sharedWith?.includes(CU.username)&&shareAccessible(m)).length;
+    const visCnt=metas.filter(m=>m.sharedWith?.includes(CU.username)&&shareAccessible(m)).length;
     let h=`<div class="u-hdr"><div class="av" style="background:${ou.color};width:44px;height:44px;font-size:18px">${ini(ou.displayName)}</div>
       <div><div class="u-nm">${esc(ou.displayName)}</div>
-      <div class="u-cnt">${metas.length} ${metas.length===1?'entry':'entries'} · ${visibleCount} shared with you</div></div></div>`;
-
+      <div class="u-cnt">${metas.length} ${metas.length===1?'entry':'entries'} · ${visCnt} shared</div></div></div>`;
     metas.forEach(m=>{
       const shared=m.sharedWith?.includes(CU.username);
       const accessible=shareAccessible(m);
       const expired=shareExpired(m)&&shared;
       const scheduled=shared&&m.shareSchedule?.scheduleDate&&!isScheduledUnlocked(m);
+      const wcount=m.contentWordCount||0;
+      const lines=Math.max(2,Math.min(5,Math.ceil(wcount/8)));
+      const widths=[85,70,90,55,75];
+      let blurLines='';for(let i=0;i<lines;i++)blurLines+=`<div class="peek-line" style="width:${widths[i%5]}%"></div>`;
 
       if(shared&&accessible){
-        // FULLY VISIBLE — clickable card
-        const hasMedia=m.mediaCount&&m.mediaCount>0;
         h+=`<div class="ecard" data-id="${m.id}" data-au="${ou.username}" style="margin-bottom:10px">
           <div class="ec-row"><div class="ec-mood">${m.mood}</div>
           <div class="ec-meta"><div class="ec-date">${fd(m.date)}</div>
-          <div class="ec-title">${esc(m.ptitle_shared?.[CU.username]||'(shared entry)')}</div>
-          </div></div>
-          <div class="ec-foot">${hasMedia?`<div class="badge-off">📎 ${m.mediaCount}</div>`:''}
-          ${m.shareSchedule?.accessEnd&&!expired?`<div class="badge-timed">⏳ ${formatTimeRemaining(m.shareSchedule.accessEnd)}</div>`:''}</div>
-          </div>`;
+          <div class="ec-title">${esc(m.ptitle_shared?.[CU.username]||'(shared entry)')}</div></div></div>
+          <div class="ec-foot">
+          ${m.mediaCount>0?`<div class="badge-off">📎 ${m.mediaCount}</div>`:''}
+          ${m.shareSchedule?.accessEnd&&!expired?`<div class="badge-timed">⏳ ${timeRemaining(m.shareSchedule.accessEnd)}</div>`:''}</div></div>`;
       } else if(shared&&expired){
-        // ACCESS EXPIRED
         h+=`<div class="peek-card" style="margin-bottom:10px;opacity:.5">
           <div class="peek-top"><div class="peek-mood">${m.mood}</div>
-          <div class="peek-meta"><div class="peek-title">${esc(m.ptitle_shared?.[CU.username]||'(entry)')}</div>
+          <div class="peek-meta"><div class="peek-title">${esc(m.ptitle_shared?.[CU.username]||'entry')}</div>
           <div class="peek-date">${fd(m.date)}</div></div></div>
-          <div style="margin-top:8px"><div class="badge-expired">⏰ Access has expired</div></div></div>`;
+          <div class="badge-expired" style="margin-top:6px">⏰ Access has expired</div></div>`;
       } else if(scheduled){
-        // SCHEDULED — show title + mood but content locked with unlock date
-        const wordCount=m.contentWordCount||0;
-        const lines=Math.max(2,Math.min(5,Math.ceil(wordCount/8)));
-        let blurLines='';
-        const widths=[85,70,90,55,75];
-        for(let i=0;i<lines;i++) blurLines+=`<div class="peek-line" style="width:${widths[i%5]}%"></div>`;
         h+=`<div class="peek-card" style="margin-bottom:10px">
           <div class="peek-top"><div class="peek-mood">${m.mood}</div>
-          <div class="peek-meta">
-            <div class="peek-title">${esc(m.ptitle_shared?.[CU.username]||'(entry)')}</div>
-            <div class="peek-date">${fd(m.date)}</div></div></div>
-          <div class="peek-body-preview">
-            <div class="peek-blur-lines">${blurLines}</div>
-            <div class="peek-lock-overlay"><div class="peek-lock-label">🕐 Unlocks ${fdt(m.shareSchedule.scheduleDate)}</div></div>
-          </div>
-          ${wordCount>0?`<div class="peek-len">~${wordCount} words</div>`:''}
-          </div>`;
+          <div class="peek-meta"><div class="peek-title">${esc(m.ptitle_shared?.[CU.username]||'entry')}</div>
+          <div class="peek-date">${fd(m.date)}</div></div></div>
+          <div class="peek-body-preview"><div class="peek-blur-lines">${blurLines}</div>
+          <div class="peek-lock-overlay"><div class="peek-lock-label">🕐 Unlocks ${fdt(m.shareSchedule.scheduleDate)}</div></div></div>
+          ${wcount>0?`<div class="peek-len">~${wcount} words</div>`:''}</div>`;
       } else if(!shared){
-        // PRIVATE — show mood + title + blurred content preview
-        const wordCount=m.contentWordCount||0;
-        const lines=Math.max(2,Math.min(5,Math.ceil(wordCount/8)));
-        let blurLines='';
-        const widths=[85,70,90,55,75];
-        for(let i=0;i<lines;i++) blurLines+=`<div class="peek-line" style="width:${widths[i%5]}%"></div>`;
         h+=`<div class="peek-card" style="margin-bottom:10px">
           <div class="peek-top"><div class="peek-mood">${m.mood}</div>
-          <div class="peek-meta">
-            <div class="peek-title">${esc(m.ptitle||'Private entry')}</div>
-            <div class="peek-date">${fd(m.date)}</div></div></div>
-          <div class="peek-body-preview">
-            <div class="peek-blur-lines">${blurLines}</div>
-            <div class="peek-lock-overlay"><div class="peek-lock-label">🔒 Private</div></div>
-          </div>
-          ${wordCount>0?`<div class="peek-len">~${wordCount} words</div>`:''}
-          </div>`;
+          <div class="peek-meta"><div class="peek-title">${esc(m.ptitle||'Private entry')}</div>
+          <div class="peek-date">${fd(m.date)}</div></div></div>
+          <div class="peek-body-preview"><div class="peek-blur-lines">${blurLines}</div>
+          <div class="peek-lock-overlay"><div class="peek-lock-label">🔒 Private</div></div></div>
+          ${wcount>0?`<div class="peek-len">~${wcount} words</div>`:''}</div>`;
       }
     });
-
     if(!metas.length)h+=`<div style="color:var(--g2);font-size:13px;padding:6px 0">No entries written yet</div>`;
     sec.innerHTML=h;
     sec.querySelectorAll('.ecard[data-id]').forEach(card=>{
@@ -1140,183 +1168,234 @@ async function renderTogether(){
 }
 
 // ════════════════════════════════════════════════════
-// MOODS — state vars (pickers handled by buildMoodTrigger / openEmojiPicker)
+// MOOD INPUT (free emoji — keyboard + PC picker)
 // ════════════════════════════════════════════════════
-let selMoodNew='💜',selMoodEdit='💜';
+// Full emoji set categorised for PC picker
+const EP_CATS=[
+  {ic:'😊',label:'Smileys',em:['😀','😃','😄','😁','😆','😅','🤣','😂','🙂','🙃','🫠','😉','😊','😇','🥰','😍','🤩','😘','😗','☺️','😚','😙','🥲','😋','😛','😜','🤪','😝','🤑','🤗','🫗','🤭','🫢','🫣','🤫','🤔','🫡','🤐','🤨','😐','😑','😶','🫥','😏','😒','🙄','😬','🤥','🫨','😌','😔','😪','🤤','😴','😷','🤒','🤕','🤢','🤮','🤧','🥵','🥶','🥴','😵','💫','🤯','🤠','🥳','🥸','😎','🤓','🧐','😕','🫤','😟','🙁','☹️','😮','😯','😲','😳','🥺','🥹','😦','😧','😨','😰','😥','😢','😭','😱','😖','😣','😞','😓','😩','😫','🥱','😤','😡','🤬','😠','💀','👿']},
+  {ic:'❤️',label:'Hearts',em:['❤️','🧡','💛','💚','💙','💜','🖤','🤍','🤎','💔','❤️‍🔥','❤️‍🩹','❣️','💕','💞','💓','💗','💖','💘','💝','💟','☮️','✝️','☯️','🕉️','🛐','💜','🥰','😍','🫶','🤝','👐','🙌','👏','🤲','🫂']},
+  {ic:'🌿',label:'Nature',em:['🌸','🌺','🌻','🌹','🌷','🌼','💐','🍀','🌿','🍃','🍂','🍁','🌱','🌲','🌳','🌴','🌵','🎋','🎍','🍄','🌾','🌊','🔥','⚡','🌙','☀️','🌤️','⛅','🌧️','⛈️','🌩️','🌨️','❄️','🌬️','🌀','🌈','✨','⭐','🌟','💫','🌠','🎇','🌅','🌄','🌃','🌆','🌇','🌉','🏔️','🗻','🏕️','🏖️','🏜️','🏝️','🌋']},
+  {ic:'💭',label:'Symbols',em:['💭','💬','🗯️','💡','🔮','🎯','🧩','🗝️','🔑','🪄','🎨','🖊️','📖','📝','🎵','🎶','🎼','🎤','🎧','🎷','🎸','🎹','🥁','🪘','🎺','🎻','🪗','🎮','🕹️','🧸','🪆','🪅','🎭','🎪','🎠','🎡','🎢','🎑','🎃','🎄','🎆','🎇','🧨','✨','🎉','🎊','🎋','🎍','🎎','🎏','🎐','🎀','🎁','🏆','🥇','🎖️','🏅']},
+  {ic:'🌙',label:'Vibes',em:['🌙','🌛','🌜','🌝','🌚','🌞','🌸','🌊','🔥','💨','🌪️','🌈','⭐','💫','✨','🎆','🕯️','🪔','💎','🔮','🧿','🪬','🌺','🦋','🦚','🦜','🦩','🦢','🕊️','🦋','🐚','🪸','🌙','🌠','🌌','🪐','☄️','🛸','🔭','🪄','🧲']}
+];
 
-// ════════════════════════════════════════════════════
-// MEDIA HANDLING
-// ════════════════════════════════════════════════════
-function triggerMedia(type,mode){
-  const input=$(mode+'-file-input');
-  input.accept=type==='image'?'image/*':'video/*';
-  input.click();
+function setupMoodInput(mode){
+  const inp=$(mode+'-mood-input');
+  const disp=$(mode+'-mood-display');
+  if(!inp||!disp)return;
+  inp.addEventListener('input',()=>{
+    const val=inp.value.trim();
+    // Extract first emoji-like character from input
+    const match=val.match(/\p{Emoji}/u);
+    if(match){
+      const em=match[0];
+      if(mode==='new')selMoodNew=em;else selMoodEdit=em;
+      disp.textContent=em;
+    }
+  });
 }
 
-function handleFileSelect(e,mode){
-  const files=Array.from(e.target.files);
-  files.forEach(f=>{
+function setupWordCount(mode){
+  const ta=$(mode+'-body');
+  const lbl=$(mode+'-wc');
+  if(!ta||!lbl)return;
+  ta.addEventListener('input',()=>{
+    const count=wc(ta.value);
+    lbl.textContent=count+' '+(count===1?'word':'words');
+    lbl.classList.toggle('active',count>0);
+  });
+}
+
+// ── PC Emoji Picker ──
+function buildEmojiPicker(pickerId,mode){
+  const container=$(pickerId);if(!container)return;
+  container.innerHTML='';
+  // Search bar
+  const search=document.createElement('div');search.className='ep-search';
+  const sin=document.createElement('input');sin.className='ep-search-in';sin.placeholder='Search emoji…';
+  search.appendChild(sin);container.appendChild(search);
+  // Cat tabs
+  const cats=document.createElement('div');cats.className='ep-cats';
+  EP_CATS.forEach((cat,i)=>{
+    const b=document.createElement('button');b.className='ep-cat'+(i===0?' on':'');b.textContent=cat.ic;b.title=cat.label;
+    b.onclick=()=>{cats.querySelectorAll('.ep-cat').forEach(x=>x.classList.remove('on'));b.classList.add('on');renderEpGrid(grid,cat.em,mode);sin.value='';};
+    cats.appendChild(b);
+  });
+  container.appendChild(cats);
+  // Grid
+  const gridWrap=document.createElement('div');gridWrap.className='ep-grid-wrap';
+  const grid=document.createElement('div');grid.className='ep-grid';
+  gridWrap.appendChild(grid);container.appendChild(gridWrap);
+  renderEpGrid(grid,EP_CATS[0].em,mode);
+  // Search
+  sin.addEventListener('input',()=>{
+    const q=sin.value.toLowerCase();
+    if(!q){renderEpGrid(grid,EP_CATS[0].em,mode);return;}
+    const all=EP_CATS.flatMap(c=>c.em);
+    renderEpGrid(grid,all,mode);
+  });
+}
+function renderEpGrid(grid,emojis,mode){
+  grid.innerHTML='';
+  emojis.forEach(em=>{
+    const d=document.createElement('div');d.className='ep-em';d.textContent=em;
+    d.onclick=()=>{
+      if(mode==='new'){selMoodNew=em;$('new-mood-display').textContent=em;$('new-mood-input').value=em;}
+      else{selMoodEdit=em;$('edit-mood-display').textContent=em;$('edit-mood-input').value=em;}
+      $(`emoji-picker-${mode}`).style.display='none';
+    };
+    grid.appendChild(d);
+  });
+}
+window.toggleEmojiPicker=function(mode){
+  const picker=$(`emoji-picker-${mode}`);if(!picker)return;
+  const other=mode==='new'?'edit':'new';
+  $(`emoji-picker-${other}`)?.style && ($(`emoji-picker-${other}`).style.display='none');
+  if(picker.style.display==='none'||!picker.style.display){
+    buildEmojiPicker(`emoji-picker-${mode}`,mode);
+    picker.style.display='flex';
+    picker.style.flexDirection='column';
+  } else {
+    picker.style.display='none';
+  }
+};
+
+// ════════════════════════════════════════════════════
+// MEDIA — IndexedDB based, device-local
+// ════════════════════════════════════════════════════
+window.triggerFile=function(mode,accept){
+  const inp=$(mode+'-file-in');inp.accept=accept;inp.click();
+};
+
+function handleFiles(e,mode){
+  Array.from(e.target.files).forEach(f=>{
     const reader=new FileReader();
     reader.onload=ev=>{
-      const item={type:f.type.startsWith('image')?'image':'video', dataUrl:ev.target.result, name:f.name};
-      if(mode==='new') newMediaItems.push(item);
-      else editMediaItems.push(item);
-      renderMediaPreview(mode);
+      const item={type:f.type.startsWith('image/')?'image':f.type.startsWith('video/')?'video':'file',
+                  dataUrl:ev.target.result,mimeType:f.type,name:f.name};
+      if(mode==='new')newMedia.push(item);else editMedia.push(item);
+      renderMediaStrip(mode);
     };
     reader.readAsDataURL(f);
   });
   e.target.value='';
 }
 
-// Detect the best audio MIME type the browser supports
-// iOS Safari supports audio/mp4, most others support audio/webm
 function getBestAudioMime(){
   const types=['audio/mp4','audio/webm;codecs=opus','audio/webm','audio/ogg'];
-  for(const t of types){ if(MediaRecorder.isTypeSupported(t)) return t; }
-  return ''; // browser default
+  for(const t of types)if(typeof MediaRecorder!=='undefined'&&MediaRecorder.isTypeSupported(t))return t;
+  return '';
 }
 
-async function toggleRecording(mode){
+window.toggleRec=async function(mode){
   const btn=$(mode+'-rec-btn');
-  if(mediaRecorder&&mediaRecorder.state!=='inactive'){
-    mediaRecorder.stop();return;
-  }
+  if(mediaRecorder&&mediaRecorder.state!=='inactive'){mediaRecorder.stop();return;}
   try{
     recStream=await navigator.mediaDevices.getUserMedia({audio:true});
     recChunks=[];recMode=mode;
-    const mimeType=getBestAudioMime();
-    const opts=mimeType?{mimeType}:{};
-    mediaRecorder=new MediaRecorder(recStream,opts);
-    mediaRecorder.ondataavailable=e=>{if(e.data.size>0)recChunks.push(e.data);};
+    const mime=getBestAudioMime();
+    mediaRecorder=new MediaRecorder(recStream,mime?{mimeType:mime}:{});
+    mediaRecorder.ondataavailable=e=>{if(e.data?.size>0)recChunks.push(e.data);};
     mediaRecorder.onstop=()=>{
       recStream.getTracks().forEach(t=>t.stop());
-      // Use the actual mimeType the recorder used so playback works on iOS
-      const actualMime=mediaRecorder.mimeType||mimeType||'audio/webm';
+      const actualMime=mediaRecorder.mimeType||mime||'audio/webm';
       const blob=new Blob(recChunks,{type:actualMime});
       const reader=new FileReader();
       reader.onload=ev=>{
-        // Store the mimeType alongside the dataUrl so the audio element can hint it
-        const item={type:'audio',dataUrl:ev.target.result,mimeType:actualMime,name:'Voice note'};
-        if(recMode==='new') newMediaItems.push(item);
-        else editMediaItems.push(item);
-        renderMediaPreview(recMode);
+        const item={type:'audio',dataUrl:ev.target.result,mimeType:actualMime,name:'Voice note '+new Date().toLocaleTimeString()};
+        if(recMode==='new')newMedia.push(item);else editMedia.push(item);
+        renderMediaStrip(recMode);
+        mediaRecorder=null;
       };
       reader.readAsDataURL(blob);
-      btn.textContent='🎙️ Voice Note';btn.style.color='';
-      mediaRecorder=null;
+      if(btn){btn.textContent='🎙️ Voice Note';btn.style.color='';}
     };
-    mediaRecorder.start(100); // collect data every 100ms for reliability
-    btn.textContent='⏹ Stop Recording';btn.style.color='#FCA5A5';
-  }catch(err){
-    console.error('Recording error:',err);
-    alert('Microphone access denied or not available on this device.');
-  }
-}
+    mediaRecorder.start(100);
+    if(btn){btn.textContent='⏹ Stop';btn.style.color='#FCA5A5';}
+  }catch(err){alert('Microphone access denied or unavailable.');}
+};
 
-function renderMediaPreview(mode){
-  const strip=$(mode+'-media-preview');strip.innerHTML='';
-  const items=mode==='new'?newMediaItems:editMediaItems;
+function renderMediaStrip(mode){
+  const strip=$(mode+'-media-strip');strip.innerHTML='';
+  const items=mode==='new'?newMedia:editMedia;
   items.forEach((item,i)=>{
     const wrap=document.createElement('div');wrap.className='mp-item';
-    let inner='';
     if(item.type==='image'){
-      inner=`<img class="mp-img" src="${item.dataUrl}" alt=""/>`;
+      wrap.innerHTML=`<img class="mp-img" src="${item.dataUrl}" alt="Photo"/>`;
     } else if(item.type==='video'){
-      inner=`<div class="mp-audio"><div class="mp-audio-ic">🎥</div><div class="mp-audio-lbl">Video</div></div>`;
+      wrap.innerHTML=`<div class="mp-thumb-box"><div class="mp-thumb-ic">🎥</div><div class="mp-thumb-lbl">Video</div></div>`;
     } else {
-      inner=`<div class="mp-audio"><div class="mp-audio-ic">🎙️</div><div class="mp-audio-lbl">Voice</div></div>`;
+      wrap.innerHTML=`<div class="mp-thumb-box"><div class="mp-thumb-ic">🎙️</div><div class="mp-thumb-lbl">Voice</div></div>`;
     }
-    wrap.innerHTML=inner+`<button class="mp-remove" data-i="${i}" data-m="${mode}">×</button>`;
-    wrap.querySelector('.mp-remove').onclick=(e)=>{
-      e.stopPropagation();
-      if(mode==='new') newMediaItems.splice(i,1);
-      else editMediaItems.splice(i,1);
-      renderMediaPreview(mode);
-    };
-    strip.appendChild(wrap);
+    const rm=document.createElement('button');rm.className='mp-remove';rm.textContent='×';
+    rm.onclick=e=>{e.stopPropagation();if(mode==='new')newMedia.splice(i,1);else editMedia.splice(i,1);renderMediaStrip(mode);};
+    wrap.appendChild(rm);strip.appendChild(wrap);
   });
 }
 
-function renderMediaView(mediaItems){
-  if(!mediaItems||!mediaItems.length) return '';
-  let h='<div class="media-row" style="margin-top:16px">';
-  mediaItems.forEach((item,i)=>{
+function renderMediaView(items){
+  if(!items?.length)return'';
+  let h='<div class="media-row">';
+  items.forEach((item,i)=>{
     if(item.type==='image'){
-      h+=`<img class="media-thumb" src="${item.dataUrl}" data-mi="${i}" alt="Photo" onclick="openLightbox(viewMediaItems,${i})"/>`;
+      h+=`<img class="media-thumb" src="${item.dataUrl}" alt="Photo" onclick="openLightbox(${i})"/>`;
     } else if(item.type==='video'){
-      h+=`<div class="media-thumb-vid" data-mi="${i}" onclick="openLightbox(viewMediaItems,${i})"><span style="font-size:26px">▶️</span></div>`;
+      h+=`<div class="media-box" onclick="openLightbox(${i})"><div class="media-box-ic">▶️</div><div class="media-box-lbl">Video</div></div>`;
     } else {
-      h+=`<div class="media-audio" onclick="openLightbox(viewMediaItems,${i})"><span class="media-audio-ic">🎙️</span><span class="media-audio-lbl">Play voice note</span></div>`;
+      h+=`<div class="media-audio-bar" onclick="openLightbox(${i})"><span style="font-size:20px">🎙️</span><span style="font-size:12px;color:var(--g3)">${esc(item.name||'Voice note')}</span></div>`;
     }
   });
-  h+='</div>';
-  return h;
+  return h+'</div>';
 }
 
-let viewMediaItems=[];
-
-function openLightbox(items,idx){
-  const item=items[idx];if(!item)return;
+window.openLightbox=function(idx){
+  const item=viewMedia[idx];if(!item)return;
   const lb=$('lightbox'),lbc=$('lb-content');lbc.innerHTML='';
   if(item.type==='image'){
     lbc.innerHTML=`<img class="lb-img" src="${item.dataUrl}" alt=""/>`;
   } else if(item.type==='video'){
-    lbc.innerHTML=`<video class="lb-vid" controls autoplay playsinline>
-      <source src="${item.dataUrl}" type="${item.mimeType||'video/mp4'}"/>
-      Your browser does not support video playback.
-    </video>`;
+    lbc.innerHTML=`<video class="lb-vid" controls autoplay playsinline><source src="${item.dataUrl}" type="${item.mimeType||'video/mp4'}"/>Your browser does not support video.</video>`;
   } else {
-    // Use <source> with explicit type so iOS Safari knows the codec
-    const mime=item.mimeType||'audio/mp4';
-    lbc.innerHTML=`<div class="lb-audio-wrap">
-      <div class="lb-audio-ic">🎙️</div>
-      <div style="font-size:13px;color:var(--g3);margin-bottom:8px">${item.name||'Voice note'}</div>
-      <audio class="lb-audio-el" controls autoplay>
-        <source src="${item.dataUrl}" type="${mime}"/>
-        Your browser does not support audio playback.
-      </audio>
-    </div>`;
+    lbc.innerHTML=`<div class="lb-audio-wrap"><div class="lb-audio-ic">🎙️</div><div class="lb-audio-name">${esc(item.name||'Voice note')}</div><audio class="lb-audio-el" controls autoplay><source src="${item.dataUrl}" type="${item.mimeType||'audio/mp4'}"/>Your browser does not support audio.</audio></div>`;
   }
   lb.classList.remove('gone');
-}
-function closeLightbox(){$('lightbox').classList.add('gone');$('lb-content').innerHTML='';}
+};
+window.closeLightbox=function(){$('lightbox').classList.add('gone');$('lb-content').innerHTML='';};
 
 // ════════════════════════════════════════════════════
 // NEW ENTRY
 // ════════════════════════════════════════════════════
 window.openNewModal=function(){
-  $('new-title').value='';$('new-body').value='';selMoodNew=MOODS[0]||'💜';newMediaItems=[];
-  buildMoodTrigger('new');
-  $('new-media-preview').innerHTML='';
-  $('btn-save-new').disabled=false;$('btn-save-new').innerHTML='Save Entry';sh('modal-new');
-}
-window.closeNew=function(){stopRecordingIfActive();hi('modal-new');}
+  $('new-title').value='';$('new-body').value='';
+  selMoodNew='💜';$('new-mood-display').textContent='💜';$('new-mood-input').value='';
+  $('new-wc').textContent='0 words';$('new-wc').classList.remove('active');
+  newMedia=[];renderMediaStrip('new');
+  $('btn-save-new').disabled=false;$('btn-save-new').innerHTML='Save Entry';
+  if($('emoji-picker-new'))$('emoji-picker-new').style.display='none';
+  sh('modal-new');
+};
+window.closeNew=function(){stopRec();hi('modal-new');};
 
-function stopRecordingIfActive(){
-  if(mediaRecorder&&mediaRecorder.state!=='inactive'){mediaRecorder.stop();}
-}
-
-window.saveNewEntry=async function(){
+window.saveNew=async function(){
   const title=$('new-title').value.trim(),body=$('new-body').value.trim();
   if(!title||!body)return;
   const btn=$('btn-save-new');btn.disabled=true;btn.innerHTML='<span class="spin"></span>';
-  const id=uid();
-  const encT=await aesEnc(title,CP,CU.salt);
-  const encB=await aesEnc(body,CP,CU.salt);
-  const wordCount=body.split(/\s+/).filter(w=>w).length;
-  const meta={
-    id, title:encT, ptitle:title, mood:selMoodNew,
-    date:new Date().toISOString(), sharedWith:[], edited:null,
-    contentWordCount:wordCount, mediaCount:newMediaItems.length,
-    shareSchedule:null
-  };
-  const updated=[meta,...MY];
-  await kvSet(K_META(CU.username),updated);
-  await kvSet(K_BODY(CU.username,id),{content:encB});
-  if(newMediaItems.length>0) await kvSet(K_MEDIA(CU.username,id),newMediaItems);
-  MY=updated;newMediaItems=[];renderMine();hi('modal-new');
+  try{
+    const id=uid();
+    const encT=await aesEnc(title,CP,CU.salt);
+    const encB=await aesEnc(body,CP,CU.salt);
+    const wordCount=wc(body);
+    const meta={id,title:encT,ptitle:title,mood:selMoodNew,date:new Date().toISOString(),
+                sharedWith:[],edited:null,contentWordCount:wordCount,mediaCount:newMedia.length,shareSchedule:null};
+    const updated=[meta,...MY];
+    await kvSet(K_META(CU.username),updated);
+    await kvSet(K_BODY(CU.username,id),{content:encB});
+    // Store media in IndexedDB (device-local, no size limit)
+    if(newMedia.length>0)await idbSet(IDB_MEDIA(CU.username,id),[...newMedia]);
+    MY=updated;newMedia=[];renderMine();hi('modal-new');
+  }catch(err){console.error('saveNew',err);alert('Failed to save. Please try again.');}
   btn.disabled=false;btn.innerHTML='Save Entry';
-}
+};
 
 // ════════════════════════════════════════════════════
 // VIEW ENTRY (own)
@@ -1326,14 +1405,19 @@ async function openMyEntry(meta){
   const raw=await kvGet(K_BODY(CU.username,meta.id));
   AC=raw?(await aesDec(raw.content,CP,CU.salt)||'(decryption error)'):'';
   APT=meta.ptitle||await aesDec(meta.title,CP,CU.salt)||'';
-  const mediaItems=await kvGet(K_MEDIA(CU.username,meta.id))||[];
-  viewMediaItems=mediaItems;
+  // Load media from IndexedDB
+  const media=await idbGet(IDB_MEDIA(CU.username,meta.id))||[];
+  viewMedia=media;
   $('v-mood').textContent=meta.mood;$('v-author').textContent='';
   $('v-title').textContent=APT;$('v-body').textContent=AC;
+  const words=meta.contentWordCount||wc(AC);
+  $('v-wc').textContent=words>0?words+' words':'';
   $('v-date').innerHTML=`<span>${fd(meta.date)}</span><span>·</span><span>${ft(meta.date)}</span>${meta.edited?'<span>·</span><span style="font-style:italic">edited</span>':''}`;
   $('v-notice').innerHTML='';
-  $('v-media').innerHTML=renderMediaView(mediaItems);
-  renderViewActions();renderShareSection();sh('modal-view');
+  $('v-media').innerHTML=renderMediaView(media);
+  renderViewActions();renderShareSection();
+  renderComments(CU.username, meta.id, true);
+  sh('modal-view');
 }
 
 // ════════════════════════════════════════════════════
@@ -1343,50 +1427,34 @@ async function openOtherEntry(meta,authorUn){
   if(!meta.sharedWith?.includes(CU.username)||!shareAccessible(meta))return;
   AE={...meta,isMine:false,authorUn};
   const author=OUs.find(u=>u.username===authorUn);
-
-  // Always bypass cache — delete local copy and fetch fresh from kvdb
-  // This ensures edits made by the author are immediately visible
   const sharKey=K_SHAR(authorUn,meta.id,CU.username);
   lsDel(sharKey);
-
-  let pb='Loading…';
-  let pt=meta.ptitle_shared?.[CU.username]||'(shared entry)';
-  let mediaItems=[];
-
-  try {
+  let pb='',pt=meta.ptitle_shared?.[CU.username]||'(shared entry)';
+  let media=[];
+  try{
     const raw=await kvGet(sharKey);
     if(raw){
-      const decBody=await decryptShare(raw.content,meta.id,CU.username);
-      pb=decBody||'(decryption failed — content may have been updated, try again)';
-      if(raw.encTitle){
-        const decTitle=await decryptShare(raw.encTitle,meta.id,CU.username);
-        if(decTitle) pt=decTitle;
-      }
-      mediaItems=raw.mediaItems||[];
-    } else {
-      pb='(content not available — ask them to re-share this entry)';
-    }
-  } catch(err){
-    console.error('openOtherEntry error:',err);
-    pb='(failed to load content — please try again)';
-  }
-
-  viewMediaItems=mediaItems;
-  AC=pb; APT=pt;
-  $('v-mood').textContent=meta.mood;
-  $('v-author').textContent=author?.displayName||'';
-  $('v-title').textContent=pt;
-  $('v-body').textContent=pb;
+      pb=await decryptShare(raw.content,meta.id,CU.username)||'(decryption failed)';
+      if(raw.encTitle)pt=await decryptShare(raw.encTitle,meta.id,CU.username)||pt;
+      // Media for shared entries: stored in kvdb only if small enough (voice notes)
+      // Large media (photos/video) must be viewed on author's device
+      media=raw.mediaItems||[];
+    } else {pb='(content not available — ask them to re-share)';}
+  }catch(e){pb='(failed to load — please try again)';dbg('openOtherEntry err',e.message);}
+  viewMedia=media;AC=pb;APT=pt;
+  $('v-mood').textContent=meta.mood;$('v-author').textContent=author?.displayName||'';
+  $('v-title').textContent=pt;$('v-body').textContent=pb;
+  $('v-wc').textContent='';
   $('v-date').innerHTML=`<span>${fd(meta.date)}</span><span>·</span><span>${ft(meta.date)}</span>`;
-
   let notice='';
-  if(meta.shareSchedule?.accessEnd&&!shareExpired(meta)){
-    notice=`<div class="v-timed-notice">⏳ Access ends ${fdt(meta.shareSchedule.accessEnd)} · ${formatTimeRemaining(meta.shareSchedule.accessEnd)}</div>`;
-  }
+  if(meta.shareSchedule?.accessEnd&&!shareExpired(meta))
+    notice=`<div class="v-timed-notice">⏳ Access ends ${fdt(meta.shareSchedule.accessEnd)} · ${timeRemaining(meta.shareSchedule.accessEnd)}</div>`;
   $('v-notice').innerHTML=notice;
-  $('v-media').innerHTML=renderMediaView(mediaItems);
-  renderViewActions();
-  $('v-share').innerHTML='';
+  $('v-media').innerHTML=renderMediaView(media);
+  if(!media.length&&meta.mediaCount>0)
+    $('v-media').innerHTML=`<div style="font-size:12px;color:var(--g3);margin-top:12px;padding:10px;background:var(--card);border-radius:10px">📎 ${meta.mediaCount} attachment${meta.mediaCount>1?'s':''} — photos and videos are stored on the author's device and cannot be shared over this connection. Voice notes will appear if they were small enough.</div>`;
+  renderViewActions();$('v-share').innerHTML='';
+  renderComments(authorUn, meta.id, false);
   sh('modal-view');
 }
 
@@ -1399,99 +1467,68 @@ function renderViewActions(){
     db.onclick=()=>{if(CDel)deleteEntry();else{CDel=true;renderViewActions();}};w.appendChild(db);
   }
   const cb=document.createElement('button');cb.className='mclose';cb.textContent='×';
-  cb.onclick=()=>{hi('modal-view');CDel=false;};w.appendChild(cb);
+  cb.onclick=()=>{hi('modal-view');CDel=false;const vc=$('v-comments');if(vc)vc.innerHTML='';};w.appendChild(cb);
 }
 
 // ════════════════════════════════════════════════════
 // EDIT ENTRY
 // ════════════════════════════════════════════════════
 function openEditModal(){
-  hi('modal-view');selMoodEdit=AE.mood;
-  buildMoodTrigger('edit');
-  // update the trigger display to show the entry's current mood
-  const et=$('edit-mood-trigger');if(et)et.querySelector('.mood-trigger-emoji').textContent=selMoodEdit;
+  hi('modal-view');
+  selMoodEdit=AE.mood;
+  $('edit-mood-display').textContent=selMoodEdit;
+  $('edit-mood-input').value=selMoodEdit;
   $('edit-title').value=APT;$('edit-body').value=AC;
-  editMediaItems=[...viewMediaItems];
-  renderMediaPreview('edit');
+  const words=wc(AC);
+  $('edit-wc').textContent=words+' '+(words===1?'word':'words');
+  $('edit-wc').classList.toggle('active',words>0);
+  editMedia=[...viewMedia];renderMediaStrip('edit');
+  if($('emoji-picker-edit'))$('emoji-picker-edit').style.display='none';
   $('btn-save-edit').disabled=false;$('btn-save-edit').innerHTML='Save Changes';sh('modal-edit');
 }
-window.closeEdit=function(){stopRecordingIfActive();hi('modal-edit');sh('modal-view');}
+window.closeEdit=function(){stopRec();hi('modal-edit');sh('modal-view');};
 
 window.saveEdit=async function(){
   const title=$('edit-title').value.trim(),body=$('edit-body').value.trim();
   if(!title||!body)return;
   const btn=$('btn-save-edit');btn.disabled=true;btn.innerHTML='<span class="spin"></span>';
-
   try{
     const encT=await aesEnc(title,CP,CU.salt);
     const encB=await aesEnc(body,CP,CU.salt);
-    const wordCount=body.split(/\s+/).filter(w=>w).length;
+    const wordCount=wc(body);
     const editedAt=new Date().toISOString();
-
-    // 1. Build the updated meta entry
-    const updated=MY.map(e=>e.id!==AE.id?e:{
-      ...e,
-      title:encT,
-      ptitle:title,
-      mood:selMoodEdit,
-      edited:editedAt,
-      contentWordCount:wordCount,
-      mediaCount:editMediaItems.length
-    });
-
-    // 2. Save meta, body, media to kvdb
+    const updated=MY.map(e=>e.id!==AE.id?e:{...e,title:encT,ptitle:title,mood:selMoodEdit,edited:editedAt,contentWordCount:wordCount,mediaCount:editMedia.length});
     await kvSet(K_META(CU.username),updated);
     await kvSet(K_BODY(CU.username,AE.id),{content:encB});
-    if(editMediaItems.length>0){
-      await kvSet(K_MEDIA(CU.username,AE.id),editMediaItems);
-    } else {
-      await kvDel(K_MEDIA(CU.username,AE.id));
-    }
-
-    // 3. Update all local state
-    MY=updated;
-    APT=title;
-    AC=body;
-    viewMediaItems=[...editMediaItems];
-    AE={...AE,title:encT,ptitle:title,mood:selMoodEdit,edited:editedAt,mediaCount:editMediaItems.length};
-
-    // 4. If shared — push updated content to all readers
+    // Update IndexedDB media
+    if(editMedia.length>0)await idbSet(IDB_MEDIA(CU.username,AE.id),[...editMedia]);
+    else await idbDel(IDB_MEDIA(CU.username,AE.id));
+    MY=updated;APT=title;AC=body;viewMedia=[...editMedia];
+    AE={...AE,title:encT,ptitle:title,mood:selMoodEdit,edited:editedAt,contentWordCount:wordCount,mediaCount:editMedia.length};
+    // Rewrite shared copies if needed
+    if(!OUs.length)await loadOthers();
     const entry=updated.find(e=>e.id===AE.id);
-    if(entry.sharedWith?.length>0){
-      // Make sure we have the other user loaded
-      if(!OUs.length) await loadOthers();
-      await rewriteShared(entry,title,body,editMediaItems);
-    }
-
-    // 5. Refresh the UI
-    renderMine();
-    hi('modal-edit');
-    $('v-mood').textContent=selMoodEdit;
-    $('v-title').textContent=title;
-    $('v-body').textContent=body;
+    if(entry.sharedWith?.length>0)await rewriteShared(entry,title,body,editMedia);
+    renderMine();hi('modal-edit');
+    $('v-mood').textContent=selMoodEdit;$('v-title').textContent=title;$('v-body').textContent=body;
+    $('v-wc').textContent=wordCount+' '+(wordCount===1?'word':'words');
     $('v-date').innerHTML=`<span>${fd(AE.date)}</span><span>·</span><span>${ft(AE.date)}</span><span>·</span><span style="font-style:italic">edited</span>`;
-    $('v-media').innerHTML=renderMediaView(viewMediaItems);
-    $('v-notice').innerHTML='';
-    renderViewActions();
-    renderShareSection();
-    sh('modal-view');
-  } catch(err){
-    console.error('saveEdit error:',err);
-    alert('Failed to save. Please try again.');
-  }
-
+    $('v-media').innerHTML=renderMediaView(viewMedia);$('v-notice').innerHTML='';
+    renderViewActions();renderShareSection();sh('modal-view');
+  }catch(err){console.error('saveEdit',err);alert('Failed to save. Please try again.');}
   btn.disabled=false;btn.innerHTML='Save Changes';
-}
+};
 
 async function deleteEntry(){
   for(const u of(AE.sharedWith||[]))await kvDel(K_SHAR(CU.username,AE.id,u));
+  await idbDel(IDB_MEDIA(CU.username,AE.id));
   const updated=MY.filter(e=>e.id!==AE.id);
-  await kvSet(K_META(CU.username),updated);await kvDel(K_BODY(CU.username,AE.id));await kvDel(K_MEDIA(CU.username,AE.id));
+  await kvSet(K_META(CU.username),updated);await kvDel(K_BODY(CU.username,AE.id));
   MY=updated;renderMine();hi('modal-view');AE=null;CDel=false;
 }
 
 // ════════════════════════════════════════════════════
-// SHARING + SCHEDULE SETTINGS
+// SHARING + SCHEDULE
 // ════════════════════════════════════════════════════
 async function encryptShare(plain,eid,ru){
   const s=await crypto.subtle.digest('SHA-256',ET.encode(eid+ru+SHARE_SEC));
@@ -1502,38 +1539,28 @@ async function decryptShare(cipher,eid,ru){
   return aesDec(cipher,SHARE_SEC,b2h(new Uint8Array(s)));
 }
 
-// Current share schedule state being edited in the UI
-let editingSchedule={mode:'now',scheduleDate:null,accessEnd:null,durChip:null};
-
 async function toggleShare(entryId,targetUser){
   const entry=MY.find(e=>e.id===entryId);if(!entry)return;
   const isOn=entry.sharedWith?.includes(targetUser.username);
   if(!isOn){
-    // Build the share schedule from editingSchedule
     let schedule=null;
-    if(editingSchedule.mode==='schedule'&&editingSchedule.scheduleDate){
-      schedule={scheduleDate:editingSchedule.scheduleDate, accessEnd:editingSchedule.accessEnd||null};
-    } else if(editingSchedule.mode==='timed'&&editingSchedule.accessEnd){
-      schedule={scheduleDate:null, accessStart:new Date().toISOString(), accessEnd:editingSchedule.accessEnd};
-    }
+    if(editingSchedule.mode==='schedule'&&editingSchedule.scheduleDate)
+      schedule={scheduleDate:editingSchedule.scheduleDate,accessEnd:editingSchedule.accessEnd||null};
+    else if(editingSchedule.mode==='timed'&&editingSchedule.accessEnd)
+      schedule={scheduleDate:null,accessStart:new Date().toISOString(),accessEnd:editingSchedule.accessEnd};
     const encBody=await encryptShare(AC,entryId,targetUser.username);
     const encTitle=await encryptShare(APT,entryId,targetUser.username);
+    // For shared media: only include audio (small). Photos/video stay on author's device.
+    const sharedMedia=viewMedia.filter(m=>m.type==='audio');
     const updated=MY.map(e=>{if(e.id!==entryId)return e;
       const pts={...(e.ptitle_shared||{}),[targetUser.username]:APT};
       return{...e,sharedWith:[...(e.sharedWith||[]),targetUser.username],ptitle_shared:pts,shareSchedule:schedule};});
     await kvSet(K_META(CU.username),updated);
-    const sharedMedia=viewMediaItems.length>0?viewMediaItems:[];
     await kvSet(K_SHAR(CU.username,entryId,targetUser.username),{content:encBody,encTitle,mediaItems:sharedMedia});
     MY=updated;AE={...AE,sharedWith:[...(AE.sharedWith||[]),targetUser.username],shareSchedule:schedule};
-    // Push notification scaffold
-    if(!schedule||isScheduledUnlocked({shareSchedule:schedule})){
-      await PUSH.notifyShared(targetUser.username, CU.displayName, APT);
-    } else if(schedule?.scheduleDate){
-      await PUSH.notifyScheduledUnlock(targetUser.username, CU.displayName, APT, schedule.scheduleDate);
-    }
-    if(schedule?.accessEnd){
-      await PUSH.notifyExpiringAccess(targetUser.username, APT, schedule.accessEnd);
-    }
+    if(!schedule||isScheduledUnlocked({shareSchedule:schedule}))await PUSH.notifyShared(targetUser.username,CU.displayName,APT);
+    else if(schedule?.scheduleDate)await PUSH.notifyScheduledUnlock(targetUser.username,CU.displayName,APT,schedule.scheduleDate);
+    if(schedule?.accessEnd)await PUSH.notifyExpiringAccess(targetUser.username,APT,schedule.accessEnd);
   } else {
     const updated=MY.map(e=>{if(e.id!==entryId)return e;
       const pts={...(e.ptitle_shared||{})};delete pts[targetUser.username];
@@ -1546,425 +1573,255 @@ async function toggleShare(entryId,targetUser){
 }
 
 async function rewriteShared(entry,plainTitle,plainBody,mediaItems){
-  // For each person this entry is shared with:
-  // 1. Re-encrypt the content+title+media and write to their shared key
-  // 2. Update the ptitle_shared in meta so their card shows the new title
   for(const uname of(entry.sharedWith||[])){
-    // Encrypt the plain content for this reader
+    lsDel(K_SHAR(CU.username,entry.id,uname));
     const encB=await encryptShare(plainBody,entry.id,uname);
     const encT=await encryptShare(plainTitle,entry.id,uname);
-
-    // Overwrite their shared copy with the latest content
-    // Clear local cache first so stale data is never served
-    lsDel(K_SHAR(CU.username,entry.id,uname));
-    await kvSet(K_SHAR(CU.username,entry.id,uname),{
-      content:encB,
-      encTitle:encT,
-      mediaItems:mediaItems||[],
-      updatedAt:new Date().toISOString()
-    });
+    const sharedMedia=(mediaItems||[]).filter(m=>m.type==='audio');
+    await kvSet(K_SHAR(CU.username,entry.id,uname),{content:encB,encTitle:encT,mediaItems:sharedMedia,updatedAt:new Date().toISOString()});
   }
-
-  // Update ptitle_shared in MY (already up to date) and push to kvdb
-  // so the other person's card in Together shows the latest title
-  const updatedMeta=MY.map(e=>{
-    if(e.id!==entry.id) return e;
+  // Update ptitle_shared in meta
+  const freshMeta=await kvGet(K_META(CU.username))||MY;
+  const withTitles=freshMeta.map(e=>{
+    if(e.id!==entry.id)return e;
     const pts={...(e.ptitle_shared||{})};
-    (entry.sharedWith||[]).forEach(uname=>{ pts[uname]=plainTitle; });
-    return {...e, ptitle_shared:pts};
+    (entry.sharedWith||[]).forEach(u=>{pts[u]=plainTitle;});
+    return{...e,ptitle_shared:pts};
   });
-  MY=updatedMeta;
-  await kvSet(K_META(CU.username),updatedMeta);
+  await kvSet(K_META(CU.username),withTitles);
+  MY=withTitles;
 }
+
+let editingSchedule={mode:'now',scheduleDate:null,accessEnd:null,durChip:null};
 
 function renderShareSection(){
   const sec=$('v-share');if(!AE?.isMine){sec.innerHTML='';return;}
   const isShared=AE.sharedWith?.length>0;
   const sched=AE.shareSchedule;
-
-  let scheduleNotice='';
-  if(isShared&&sched?.scheduleDate&&!isScheduledUnlocked(AE)){
-    scheduleNotice=`<div class="v-sched-notice">🕐 Unlocks for them on ${fdt(sched.scheduleDate)}</div>`;
-  } else if(isShared&&sched?.accessEnd&&!shareExpired(AE)){
-    scheduleNotice=`<div class="v-timed-notice">⏳ Access expires ${fdt(sched.accessEnd)} · ${formatTimeRemaining(sched.accessEnd)}</div>`;
-  } else if(isShared&&shareExpired(AE)){
-    scheduleNotice=`<div class="v-expired-notice">⏰ Timed access has expired. Toggle off and on to re-share.</div>`;
-  }
-
-  let h=`<div class="share-sec">
-    <span class="sec-lbl">Share this entry</span>
-    ${scheduleNotice}`;
-
-  if(!OUs.length){
-    h+=`<div style="color:var(--g2);font-size:13px;line-height:1.7">Your companion hasn't joined yet.</div>`;
-  } else {
+  let notice='';
+  if(isShared&&sched?.scheduleDate&&!isScheduledUnlocked(AE))notice=`<div class="v-sched-notice">🕐 Unlocks for them ${fdt(sched.scheduleDate)}</div>`;
+  else if(isShared&&sched?.accessEnd&&!shareExpired(AE))notice=`<div class="v-timed-notice">⏳ Expires ${fdt(sched.accessEnd)} · ${timeRemaining(sched.accessEnd)}</div>`;
+  else if(isShared&&shareExpired(AE))notice=`<div class="v-expired-notice">⏰ Access expired. Toggle off and on to re-share.</div>`;
+  let h=`<div class="share-sec"><span class="sec-lbl">Share this entry</span>${notice}`;
+  if(!OUs.length){h+=`<div style="color:var(--g2);font-size:13px">Your companion hasn't joined yet.</div>`;}
+  else{
     OUs.forEach(ou=>{
       const on=AE.sharedWith?.includes(ou.username);
-      h+=`<div class="share-row">
-        <div style="flex:1">
-          <div style="display:flex;align-items:center;gap:8px">
-            <div class="av" style="background:${ou.color};width:30px;height:30px;font-size:13px">${ini(ou.displayName)}</div>
-            <div><div class="s-name">${esc(ou.displayName)}</div></div>
-          </div>
-        </div>
-        <button class="toggle${on?' on':''}" data-u="${ou.username}"><div class="tog-th"></div></button>
-      </div>`;
+      h+=`<div class="share-row"><div style="display:flex;align-items:center;gap:8px">
+        <div class="av" style="background:${ou.color};width:30px;height:30px;font-size:13px">${ini(ou.displayName)}</div>
+        <div class="s-name">${esc(ou.displayName)}</div></div>
+        <button class="toggle${on?' on':''}" data-u="${ou.username}"><div class="tog-th"></div></button></div>`;
     });
-    // Sharing schedule settings (only shown when NOT yet shared)
     if(!isShared){
-      h+=`<div style="margin-top:14px">
-        <span class="sml-lbl">When should they get access?</span>
-        <div class="share-settings">
-          <div class="ss-tab-row">
-            <button class="ss-tab${editingSchedule.mode==='now'?' on':''}" onclick="setSchedMode('now')">Now</button>
-            <button class="ss-tab${editingSchedule.mode==='schedule'?' on':''}" onclick="setSchedMode('schedule')">On a date</button>
-            <button class="ss-tab${editingSchedule.mode==='timed'?' on':''}" onclick="setSchedMode('timed')">For a limited time</button>
-          </div>
-          <div class="ss-body" id="ss-body-content"></div>
-        </div>
-      </div>`;
+      h+=`<div style="margin-top:14px"><span class="sml-lbl">When should they get access?</span>
+        <div class="share-settings"><div class="ss-tab-row">
+          <button class="ss-tab${editingSchedule.mode==='now'?' on':''}" onclick="setSchedMode('now')">Now</button>
+          <button class="ss-tab${editingSchedule.mode==='schedule'?' on':''}" onclick="setSchedMode('schedule')">On a date</button>
+          <button class="ss-tab${editingSchedule.mode==='timed'?' on':''}" onclick="setSchedMode('timed')">Limited time</button>
+        </div><div class="ss-body" id="ss-body-content"></div></div></div>`;
     }
   }
-  h+='</div>';
-  sec.innerHTML=h;
-
-  // Render schedule body
-  if(!isShared) renderSchedBody();
-
+  h+='</div>';sec.innerHTML=h;
+  if(!isShared)renderSchedBody();
   sec.querySelectorAll('.toggle[data-u]').forEach(btn=>{
     btn.onclick=async()=>{const tu=OUs.find(u=>u.username===btn.dataset.u);if(tu)await toggleShare(AE.id,tu);};
   });
 }
 
-window.setSchedMode=function(mode){
-  editingSchedule.mode=mode;
-  renderShareSection();
-}
-
+window.setSchedMode=function(mode){editingSchedule.mode=mode;renderShareSection();};
 function renderSchedBody(){
   const el=$('ss-body-content');if(!el)return;
-  const mode=editingSchedule.mode;
-  if(mode==='now'){
-    el.innerHTML=`<div class="ss-note">They'll see this entry immediately when you share it.</div>`;
-  } else if(mode==='schedule'){
-    const minDate=new Date().toISOString().slice(0,16);
-    el.innerHTML=`<div class="ss-lbl">Unlock date &amp; time</div>
-      <input type="datetime-local" class="dt-input" id="ss-dt" min="${minDate}" value="${editingSchedule.scheduleDate||''}"/>
-      <div class="ss-note" style="margin-top:8px">They'll see the title and mood now, but the content stays locked until this date.</div>`;
+  if(editingSchedule.mode==='now'){el.innerHTML=`<div class="ss-note">They'll see this entry immediately.</div>`;}
+  else if(editingSchedule.mode==='schedule'){
+    const min=new Date().toISOString().slice(0,16);
+    el.innerHTML=`<div class="ss-note">They'll see the title and mood now, but content unlocks on this date.</div>
+      <input type="datetime-local" class="dt-input" id="ss-dt" min="${min}" value="${editingSchedule.scheduleDate||''}"/>`;
     $('ss-dt').addEventListener('change',e=>{editingSchedule.scheduleDate=e.target.value?new Date(e.target.value).toISOString():null;});
-  } else if(mode==='timed'){
-    const chips=[
-      {label:'1 hour',hours:1},{label:'12 hours',hours:12},{label:'1 day',hours:24},
-      {label:'3 days',hours:72},{label:'1 week',hours:168}
-    ];
-    let chipH=chips.map(c=>`<button class="dur-chip${editingSchedule.durChip===c.label?' sel':''}" onclick="setDurChip('${c.label}',${c.hours})">${c.label}</button>`).join('');
-    el.innerHTML=`<div class="ss-lbl">Access duration</div>
-      <div class="dur-row">${chipH}</div>
-      <div class="dur-custom-row" style="margin-top:10px">
-        <span style="font-size:12px;color:var(--g3)">Custom:</span>
-        <input type="number" class="dur-num" id="dur-num" min="1" placeholder="—" value="${editingSchedule.customNum||''}"/>
-        <select class="dur-unit" id="dur-unit">
-          <option value="hours">hours</option>
-          <option value="days">days</option>
-        </select>
-        <button class="dur-chip" onclick="applyCustomDur()">Set</button>
-      </div>
-      <div class="ss-note" style="margin-top:8px">They can read this entry for the chosen duration after you share it.</div>`;
-    if(editingSchedule.durChip) $('ss-body-content').querySelector(`[onclick*="${editingSchedule.durChip}"]`)?.classList.add('sel');
+  } else {
+    const chips=[{l:'1 hour',h:1},{l:'12 hours',h:12},{l:'1 day',h:24},{l:'3 days',h:72},{l:'1 week',h:168}];
+    let ch=chips.map(c=>`<button class="dur-chip${editingSchedule.durChip===c.l?' sel':''}" onclick="setDurChip('${c.l}',${c.h})">${c.l}</button>`).join('');
+    el.innerHTML=`<div class="ss-note">They can read this entry for the chosen duration.</div>
+      <div class="dur-row">${ch}</div>
+      <div class="dur-custom-row"><span style="font-size:12px;color:var(--g3)">Custom:</span>
+        <input type="number" class="dur-num" id="dur-num" min="1" placeholder="—"/>
+        <select class="dur-unit" id="dur-unit"><option value="hours">hours</option><option value="days">days</option></select>
+        <button class="dur-chip" onclick="applyDur()">Set</button></div>`;
   }
 }
+window.setDurChip=function(l,h){editingSchedule.durChip=l;editingSchedule.accessEnd=new Date(Date.now()+h*3600000).toISOString();renderSchedBody();};
+window.applyDur=function(){const n=parseInt($('dur-num')?.value)||0;if(n<1)return;const u=$('dur-unit')?.value||'hours';editingSchedule.durChip=null;editingSchedule.accessEnd=new Date(Date.now()+(u==='days'?n*24:n)*3600000).toISOString();};
 
-window.setDurChip=function(label,hours){
-  editingSchedule.durChip=label;
-  editingSchedule.customNum='';
-  const end=new Date(Date.now()+hours*3600000);
-  editingSchedule.accessEnd=end.toISOString();
-  renderSchedBody();
+// ════════════════════════════════════════════════════
+// CHANGE PIN
+// ════════════════════════════════════════════════════
+window.openChangePinModal=function(){
+  cpPhase='current';cpCurrent='';cpNew='';cpConfirm='';
+  buildGrid('cp-pin-grid',cpDigit,cpDel);
+  renderCpDots();$('cp-err').textContent='';$('cp-status').textContent='';
+  $('cp-new-row').style.display='none';$('cp-confirm-row').style.display='none';
+  sh('modal-pin-change');
+};
+window.closeChangePinModal=function(){hi('modal-pin-change');};
+function cpDel(){
+  if(cpPhase==='current')cpCurrent=cpCurrent.slice(0,-1);
+  else if(cpPhase==='new')cpNew=cpNew.slice(0,-1);
+  else cpConfirm=cpConfirm.slice(0,-1);
+  renderCpDots();$('cp-err').textContent='';
 }
-
-window.applyCustomDur=function(){
-  const num=parseInt($('dur-num')?.value)||0;
-  const unit=$('dur-unit')?.value||'hours';
-  if(num<1)return;
-  const hours=unit==='days'?num*24:num;
-  editingSchedule.durChip=null;
-  editingSchedule.customNum=num;
-  const end=new Date(Date.now()+hours*3600000);
-  editingSchedule.accessEnd=end.toISOString();
+async function cpDigit(d){
+  $('cp-err').textContent='';
+  if(cpPhase==='current'){if(cpCurrent.length>=4)return;cpCurrent+=d;renderCpDots();if(cpCurrent.length===4)await cpVerify();}
+  else if(cpPhase==='new'){if(cpNew.length>=4)return;cpNew+=d;renderCpDots();if(cpNew.length===4){cpPhase='confirm';$('cp-confirm-row').style.display='flex';renderCpDots();}}
+  else{if(cpConfirm.length>=4)return;cpConfirm+=d;renderCpDots();if(cpConfirm.length===4)await cpSave();}
+}
+async function cpVerify(){
+  $('cp-pin-grid').style.pointerEvents='none';
+  const tok=await makeToken(cpCurrent,CU.salt);
+  $('cp-pin-grid').style.pointerEvents='';
+  if(tok===CU.verifyToken){cpPhase='new';$('cp-new-row').style.display='flex';$('cp-status').textContent='✓ Current PIN verified';renderCpDots();}
+  else{$('cp-err').textContent='Incorrect PIN';shakeEl('cp-dots1');cpCurrent='';renderCpDots();}
+}
+async function cpSave(){
+  if(cpNew!==cpConfirm){$('cp-err').textContent="PINs don't match";shakeEl('cp-dots3');cpConfirm='';cpPhase='confirm';renderCpDots();return;}
+  if(cpNew===cpCurrent){$('cp-err').textContent='New PIN must differ from current';cpNew='';cpConfirm='';cpPhase='new';$('cp-confirm-row').style.display='none';renderCpDots();return;}
+  $('cp-pin-grid').style.pointerEvents='none';
+  const newToken=await makeToken(cpNew,CU.salt);
+  const users=await kvGet(K_USERS)||[];
+  const updated=users.map(u=>u.username===CU.username?{...u,verifyToken:newToken}:u);
+  await kvSet(K_USERS,updated);
+  CU={...CU,verifyToken:newToken};CP=cpNew;
+  $('cp-pin-grid').style.pointerEvents='';
+  $('cp-status').textContent='✅ PIN updated!';
+  setTimeout(()=>hi('modal-pin-change'),1500);
+}
+function renderCpDots(){
+  mkDots('cp-dots1',cpCurrent,false);
+  if(cpPhase!=='current')mkDots('cp-dots2',cpNew,false);
+  if(cpPhase==='confirm')mkDots('cp-dots3',cpConfirm,false);
 }
 
 // ════════════════════════════════════════════════════
 // SIGN OUT / UTILS
 // ════════════════════════════════════════════════════
+function stopRec(){
+  if(mediaRecorder&&mediaRecorder.state!=='inactive'){mediaRecorder.stop();}
+  recStream?.getTracks().forEach(t=>t.stop());
+}
 // ════════════════════════════════════════════════════
-// EMOJI CATEGORIES  (iOS / Unicode standard set)
+// COMMENTS
+// Comments are stored per-entry on the AUTHOR's key so
+// both people writing on a shared entry end up in one place.
+// Key: K_COMM(authorUsername, entryId)
+// Structure: [{id, authorUsername, displayName, color, text, date}]
 // ════════════════════════════════════════════════════
-const EMOJI_CATS = [
-  { label: '❤️ Feelings', emojis: ['💜','🥰','😊','😌','🤩','😂','😢','😭','💔','🥺','😔','😞','😡','🤬','😤','😠','😰','😨','🫨','😟','😶','🫥','😑','😐','🫠','😮‍💨','🤯','🥹','😇','🥳','😎','🤔','🫤','😬','😏','🙄','😒','😓','😩','😫','🤢','🤮','😤','😠'] },
-  { label: '🌿 Nature', emojis: ['🌊','🔥','🌙','✨','⭐','🌸','🌺','🌻','🌹','🍃','🌿','🍀','🌱','🌲','🌳','🌴','🌵','🍄','🌾','🌈','☁️','⛈️','🌧️','❄️','🌬️','🌀','🌫️','🌊','🏔️','🌅','🌄','🌠'] },
-  { label: '✍️ Thoughts', emojis: ['💭','🤍','🖤','💫','🌟','⚡','💥','🎯','🔮','🪞','🧩','🗝️','📖','✉️','📝','🎨','🎵','🎶','🕯️','🌙','🦋','🫧','🪷','🌙','💎','🪐','🌌','🔭'] },
-  { label: '🧡 Life', emojis: ['🏠','🛌','🍵','☕','🍷','🌮','🎂','🎁','🎉','🥂','🏃','🧘','💪','🤸','🛁','🚿','📱','💻','🎮','📺','✈️','🚗','🌍','🏖️','🏕️','⛺'] },
-  { label: '🫶 Together', emojis: ['🫶','🤝','👫','💑','👨‍👩‍👧','🫂','💞','💕','💗','💓','💘','💝','💖','🥰','😘','😍','🤗','👋','✌️','🤞','🙏','❤️','🧡','💛','💚','💙','💜','🖤','🤎','🤍'] }
-];
 
-// ════════════════════════════════════════════════════
-// MOOD CUSTOMISER
-// ════════════════════════════════════════════════════
-let customMoodDraft=[];   // emojis user is building in the customiser
-let customMoodCat=0;      // active category in customiser
-
-const K_USER_MOODS = u => 'amma_j_moods_'+sl(u);
-
-async function loadUserMoods(){
-  if(!CU) return;
-  const saved=await kvGet(K_USER_MOODS(CU.username));
-  if(saved&&saved.length) MOODS=[...saved];
-  else MOODS=[...DEFAULT_MOODS];
+async function loadComments(authorUn, entryId){
+  const key = K_COMM(authorUn, entryId);
+  lsDel(key); // always fresh
+  return await kvGet(key) || [];
 }
 
-window.openMoodCustomiser=function(){
-  customMoodDraft=[...MOODS];
-  customMoodCat=0;
-  renderCustomCatRow();
-  renderCustomEmojiGrid();
-  renderMoodSelPreview();
-  sh('modal-mood-custom');
-}
-window.closeMoodCustomiser=function(){ hi('modal-mood-custom'); }
+async function renderComments(authorUn, entryId, isMine){
+  const sec = $('v-comments');
+  if(!sec) return;
 
-function renderCustomCatRow(){
-  const row=$('emoji-cat-row');row.innerHTML='';
-  EMOJI_CATS.forEach((cat,i)=>{
-    const b=document.createElement('button');
-    b.className='emoji-cat'+(i===customMoodCat?' on':'');
-    b.textContent=cat.label;
-    b.onclick=()=>{customMoodCat=i;renderCustomCatRow();renderCustomEmojiGrid();};
-    row.appendChild(b);
-  });
-}
+  // Only show comments if entry is shared OR it's the author viewing their own
+  // For private unshared entries: no comments section
+  const entry = isMine
+    ? MY.find(e=>e.id===entryId)
+    : (OD[authorUn]||[]).find(e=>e.id===entryId);
 
-function renderCustomEmojiGrid(){
-  const grid=$('emoji-grid');grid.innerHTML='';
-  EMOJI_CATS[customMoodCat].emojis.forEach(em=>{
-    const d=document.createElement('div');
-    const chosen=customMoodDraft.includes(em);
-    d.className='emoji-cell'+(chosen?' chosen':'');
-    d.textContent=em;
-    d.onclick=()=>{
-      if(customMoodDraft.includes(em)){
-        customMoodDraft=customMoodDraft.filter(x=>x!==em);
-      } else {
-        if(customMoodDraft.length>=28){alert('Maximum 28 moods. Remove one first.');return;}
-        customMoodDraft.push(em);
+  const isShared = entry?.sharedWith?.length > 0;
+  if(!isMine && !isShared){ sec.innerHTML=''; return; }
+
+  const comments = await loadComments(authorUn, entryId);
+
+  let h = '<div class="comments-sec">';
+  h += '<span class="sec-lbl">Comments</span>';
+
+  if(!comments.length){
+    h += '<div class="no-comments">No comments yet. Be the first to leave one.</div>';
+  } else {
+    comments.forEach(cm=>{
+      const isOwn = cm.authorUsername === CU.username;
+      h += `<div class="comment-item" data-cmid="${cm.id}">
+        <div class="comment-av" style="background:${cm.color||'#7C3AED'}">${ini(cm.displayName)}</div>
+        <div class="comment-bubble">
+          <div class="comment-meta">
+            <span class="comment-author">${esc(cm.displayName)}</span>
+            <span class="comment-time">${ft(cm.date)}, ${fd(cm.date)}</span>
+          </div>
+          <div class="comment-text">${esc(cm.text)}</div>
+        </div>
+        ${isOwn ? `<button class="comment-del" data-cmid="${cm.id}" data-author="${authorUn}" data-entry="${entryId}" onclick="deleteComment('${authorUn}','${entryId}','${cm.id}')">✕</button>` : ''}
+      </div>`;
+    });
+  }
+
+  // Comment input row
+  h += `<div class="comment-input-row">
+    <textarea class="comment-input" id="comment-input" placeholder="Leave a comment…" rows="1"
+      oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"></textarea>
+    <button class="comment-send" id="comment-send-btn"
+      onclick="postComment('${authorUn}','${entryId}')" title="Send">💜</button>
+  </div>`;
+
+  h += '</div>';
+  sec.innerHTML = h;
+
+  // Auto-resize textarea on input
+  const ta = $('comment-input');
+  if(ta){
+    ta.addEventListener('keydown', e=>{
+      if(e.key==='Enter' && !e.shiftKey){
+        e.preventDefault();
+        postComment(authorUn, entryId);
       }
-      renderCustomEmojiGrid();renderMoodSelPreview();
-    };
-    grid.appendChild(d);
-  });
+    });
+  }
 }
 
-function renderMoodSelPreview(){
-  $('mood-sel-preview').textContent=customMoodDraft.join(' ');
-  $('mood-sel-count').textContent=customMoodDraft.length+'/28 selected';
-}
-
-window.saveMoodCustom=async function(){
-  if(customMoodDraft.length===0){alert('Please select at least one mood.');return;}
-  MOODS=[...customMoodDraft];
-  await kvSet(K_USER_MOODS(CU.username),MOODS);
-  // Rebuild mood rows in compose modals
-  buildMoodTrigger('new');
-  buildMoodTrigger('edit');
-  hi('modal-mood-custom');
-}
-
-window.resetMoodCustom=function(){
-  customMoodDraft=[...DEFAULT_MOODS];
-  renderCustomEmojiGrid();renderMoodSelPreview();
-}
-
-// ════════════════════════════════════════════════════
-// INLINE EMOJI PICKER (used in new/edit entry)
-// ════════════════════════════════════════════════════
-let eipCat=0, eipSelected='💜', eipCallback=null;
-
-function openEmojiPicker(currentMood, callback){
-  eipSelected=currentMood||'💜';
-  eipCallback=callback;
-  eipCat=0;
-  renderEipCatRow();
-  renderEipGrid();
-  $('eip-preview').textContent=eipSelected;
-  $('eip-confirm-btn').onclick=()=>{
-    if(eipCallback) eipCallback(eipSelected);
-    hi('emoji-inline-picker');
+window.postComment = async function(authorUn, entryId){
+  const ta = $('comment-input');
+  const btn = $('comment-send-btn');
+  if(!ta) return;
+  const text = ta.value.trim();
+  if(!text) return;
+  btn.disabled = true;
+  const cm = {
+    id: uid(),
+    authorUsername: CU.username,
+    displayName: CU.displayName,
+    color: CU.color,
+    text,
+    date: new Date().toISOString()
   };
-  sh('emoji-inline-picker');
-}
+  const key = K_COMM(authorUn, entryId);
+  const existing = await kvGet(key) || [];
+  await kvSet(key, [...existing, cm]);
+  // Re-render comments
+  const isMine = authorUn === CU.username;
+  await renderComments(authorUn, entryId, isMine);
+  btn.disabled = false;
+};
 
-function renderEipCatRow(){
-  const row=$('eip-cat-row');row.innerHTML='';
-  // First tab = user's current mood palette
-  const allCats=[{label:'⭐ My Moods',emojis:MOODS},...EMOJI_CATS];
-  allCats.forEach((cat,i)=>{
-    const b=document.createElement('button');
-    b.className='emoji-cat'+(i===eipCat?' on':'');
-    b.textContent=cat.label;
-    b.onclick=()=>{eipCat=i;renderEipCatRow();renderEipGrid();};
-    row.appendChild(b);
-  });
-}
-
-function renderEipGrid(){
-  const grid=$('eip-grid');grid.innerHTML='';
-  const allCats=[{label:'⭐ My Moods',emojis:MOODS},...EMOJI_CATS];
-  allCats[eipCat].emojis.forEach(em=>{
-    const d=document.createElement('div');
-    d.className='emoji-cell'+(em===eipSelected?' chosen':'');
-    d.textContent=em;
-    d.onclick=()=>{
-      eipSelected=em;
-      $('eip-preview').textContent=em;
-      grid.querySelectorAll('.emoji-cell').forEach(x=>x.classList.remove('chosen'));
-      d.classList.add('chosen');
-    };
-    grid.appendChild(d);
-  });
-}
-
-// Replace the old static mood row with a tap-to-open picker trigger
-function buildMoodTrigger(mode){
-  const containerId = mode+'-moods';
-  const row=$(containerId);if(!row)return;
-  row.innerHTML='';
-  const getter=mode==='new'?()=>selMoodNew:()=>selMoodEdit;
-  const setter=mode==='new'?v=>{selMoodNew=v;}:v=>{selMoodEdit=v;};
-  const trigger=document.createElement('div');
-  trigger.className='mood-trigger';
-  trigger.id=mode+'-mood-trigger';
-  trigger.innerHTML=`<span class="mood-trigger-emoji">${getter()}</span>
-    <span class="mood-trigger-lbl">Tap to choose a mood</span>
-    <span class="mood-trigger-arr">›</span>`;
-  trigger.onclick=()=>openEmojiPicker(getter(),em=>{
-    setter(em);
-    trigger.querySelector('.mood-trigger-emoji').textContent=em;
-  });
-  row.appendChild(trigger);
-}
-
-// ════════════════════════════════════════════════════
-// CHANGE PIN
-// ════════════════════════════════════════════════════
-let cpPhase='current'; // current | new | confirm
-let cpCurrent='', cpNew='', cpConfirm='';
-
-window.openChangePinModal=function(){
-  cpPhase='current'; cpCurrent=''; cpNew=''; cpConfirm='';
-  buildGrid('cp-pin-grid', cpDigit, cpDel);
-  renderCpDots();
-  $('cp-err').textContent=''; $('cp-status').textContent='';
-  $('cp-new-row').style.display='none';
-  $('cp-confirm-row').style.display='none';
-  sh('modal-pin-change');
-}
-
-window.closeChangePinModal=function(){
-  hi('modal-pin-change');
-}
-
-function cpDel(){
-  if(cpPhase==='current') cpCurrent=cpCurrent.slice(0,-1);
-  else if(cpPhase==='new') cpNew=cpNew.slice(0,-1);
-  else cpConfirm=cpConfirm.slice(0,-1);
-  renderCpDots(); $('cp-err').textContent='';
-}
-
-async function cpDigit(d){
-  $('cp-err').textContent='';
-  if(cpPhase==='current'){
-    if(cpCurrent.length>=4) return;
-    cpCurrent+=d; renderCpDots();
-    if(cpCurrent.length===4) await cpVerifyCurrent();
-  } else if(cpPhase==='new'){
-    if(cpNew.length>=4) return;
-    cpNew+=d; renderCpDots();
-    if(cpNew.length===4){ cpPhase='confirm'; $('cp-confirm-row').style.display='flex'; renderCpDots(); }
-  } else {
-    if(cpConfirm.length>=4) return;
-    cpConfirm+=d; renderCpDots();
-    if(cpConfirm.length===4) await cpSaveNew();
-  }
-}
-
-async function cpVerifyCurrent(){
-  $('cp-pin-grid').style.pointerEvents='none';
-  const tok=await makeToken(cpCurrent, CU.salt);
-  $('cp-pin-grid').style.pointerEvents='';
-  if(tok===CU.verifyToken){
-    cpPhase='new';
-    $('cp-new-row').style.display='flex';
-    $('cp-status').textContent='✓ Current PIN verified';
-    renderCpDots();
-  } else {
-    $('cp-err').textContent='Incorrect PIN — try again';
-    shakeEl('cp-dots1');
-    cpCurrent=''; renderCpDots();
-  }
-}
-
-async function cpSaveNew(){
-  if(cpNew!==cpConfirm){
-    $('cp-err').textContent="PINs don't match — try again";
-    shakeEl('cp-dots3');
-    cpConfirm=''; cpPhase='confirm'; renderCpDots(); return;
-  }
-  if(cpNew===cpCurrent){
-    $('cp-err').textContent='New PIN must be different from current PIN';
-    cpNew=''; cpConfirm=''; cpPhase='new';
-    $('cp-confirm-row').style.display='none';
-    renderCpDots(); return;
-  }
-  $('cp-pin-grid').style.pointerEvents='none';
-  // Re-derive new verify token with same salt (salt stays the same — entries remain readable)
-  const newToken=await makeToken(cpNew, CU.salt);
-  const users=await kvGet(K_USERS)||[];
-  const updated=users.map(u=>u.username===CU.username?{...u,verifyToken:newToken}:u);
-  await kvSet(K_USERS, updated);
-  CU={...CU,verifyToken:newToken};
-  CP=cpNew; // update in-memory PIN so session continues
-  $('cp-pin-grid').style.pointerEvents='';
-  $('cp-status').textContent='✅ PIN updated successfully!';
-  $('cp-err').textContent='';
-  setTimeout(()=>hi('modal-pin-change'),1500);
-}
-
-function renderCpDots(){
-  mkDots('cp-dots1', cpCurrent, false);
-  if(cpPhase!=='current') mkDots('cp-dots2', cpNew, false);
-  if(cpPhase==='confirm')  mkDots('cp-dots3', cpConfirm, false);
-}
-
-window.toggleDebug=function(){
-  window.AMMA_DEBUG=!window.AMMA_DEBUG;
-  const panel=document.getElementById('dbg-panel');
-  const btn=document.getElementById('dbg-toggle-btn');
-  if(panel) panel.style.display=window.AMMA_DEBUG?'block':'none';
-  if(btn) btn.textContent='🔧 Debug Log ('+(window.AMMA_DEBUG?'ON — tap again to hide':'off')+')';
-  if(window.AMMA_DEBUG) dbg('=== DEBUG ENABLED === bucket:'+KVDB_BUCKET+' user:'+(CU?.username||'none'));
-}
+window.deleteComment = async function(authorUn, entryId, cmId){
+  const key = K_COMM(authorUn, entryId);
+  const existing = await kvGet(key) || [];
+  const updated = existing.filter(c=>c.id!==cmId);
+  await kvSet(key, updated);
+  const isMine = authorUn === CU.username;
+  await renderComments(authorUn, entryId, isMine);
+};
 
 window.signOut=function(){
-  stopRecordingIfActive();
-  CU=null;CP=null;MY=[];OUs=[];OD={};AE=null;AC='';APT='';CDel=false;
-  newMediaItems=[];editMediaItems=[];viewMediaItems=[];
+  stopRec();CU=null;CP=null;MY=[];OUs=[];OD={};AE=null;AC='';APT='';CDel=false;
+  newMedia=[];editMedia=[];viewMedia=[];
   editingSchedule={mode:'now',scheduleDate:null,accessEnd:null,durChip:null};
-  ['modal-new','modal-edit','modal-view'].forEach(hi);
+  ['modal-new','modal-edit','modal-view','modal-pin-change'].forEach(hi);
   renderWho();showScreen('who');
-}
-function shakeEl(id){const e=$(id);e.classList.remove('shake');void e.offsetWidth;e.classList.add('shake');setTimeout(()=>e.classList.remove('shake'),420);}
+};
+function shakeEl(id){const e=$(id);if(!e)return;e.classList.remove('shake');void e.offsetWidth;e.classList.add('shake');setTimeout(()=>e.classList.remove('shake'),420);}
 </script>
-<!-- DEBUG PANEL (hidden by default, toggle via profile tab) -->
-<div id="dbg-panel" style="display:none;position:fixed;top:0;left:0;right:0;max-height:40vh;overflow-y:auto;background:rgba(0,0,0,.95);color:#0f0;font-family:monospace;font-size:10px;padding:8px;z-index:99999;border-bottom:2px solid #0f0;max-width:430px;margin:0 auto;"></div>
-
 </body>
 </html>
