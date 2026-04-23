@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- AMMA Journal v2.5 — built April 2026 — if you see this in source, the new file is loaded -->
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -334,6 +335,7 @@ html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Nunit
   <div class="p-card">
     <div class="p-title">Private Journal 🔐</div>
     <div class="p-hint">Enter the access password to open your journal.</div>
+    <div style="font-size:9px;color:#374151;text-align:right;margin-bottom:4px">v2.5</div>
     <input class="p-input" id="gate-input" type="password" placeholder="Enter password…" autocomplete="off" autocorrect="off" autocapitalize="off"/>
     <button class="p-btn" id="gate-btn">Unlock</button>
     <div class="p-err" id="gate-err"></div>
@@ -814,13 +816,21 @@ let cpPhase='current',cpCurrent='',cpNew='',cpConfirm='';
 // BOOT / GATE
 // ════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded',async()=>{
+  // Compute expected token once
   const expected=await sha256(ACCESS_PASSWORD+'_ok');
   const stored=sessionStorage.getItem('amma_gate')||localStorage.getItem('amma_gate_persist');
-  if(stored===expected){$('panel-gate').classList.add('gone');await startApp();}
-  else{
-    $('gate-btn').onclick=tryUnlock;
-    $('gate-input').addEventListener('keydown',e=>{if(e.key==='Enter')tryUnlock();});
-    setTimeout(()=>$('gate-input')?.focus(),350);
+  if(stored===expected){
+    $('panel-gate').classList.add('gone');
+    await startApp();
+  } else {
+    // Wire up gate — ensure button and Enter key both work
+    const gBtn=$('gate-btn');
+    const gIn=$('gate-input');
+    if(gBtn) gBtn.onclick=tryUnlock;
+    if(gIn){
+      gIn.addEventListener('keydown',e=>{ if(e.key==='Enter') tryUnlock(); });
+      setTimeout(()=>gIn.focus(),350);
+    }
   }
   $('lightbox').addEventListener('click',e=>{if(e.target===$('lightbox'))closeLightbox();});
   document.addEventListener('click',e=>{
