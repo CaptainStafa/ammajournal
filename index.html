@@ -816,14 +816,9 @@ let cpPhase='current',cpCurrent='',cpNew='',cpConfirm='';
 // BOOT / GATE
 // ════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded',async()=>{
-  // Compute expected token once
-  const expected=await sha256(ACCESS_PASSWORD+'_ok');
-  const stored=sessionStorage.getItem('amma_gate')||localStorage.getItem('amma_gate_persist');
-  if(stored===expected){
-    $('panel-gate').classList.add('gone');
-    await startApp();
-  } else {
-    // Wire up gate — ensure button and Enter key both work
+  // ── STEP 1: Wire gate button FIRST before anything else can crash ──
+  // This must be the very first thing so button always works
+  try {
     const gBtn=$('gate-btn');
     const gIn=$('gate-input');
     if(gBtn) gBtn.onclick=tryUnlock;
@@ -831,18 +826,35 @@ document.addEventListener('DOMContentLoaded',async()=>{
       gIn.addEventListener('keydown',e=>{ if(e.key==='Enter') tryUnlock(); });
       setTimeout(()=>gIn.focus(),350);
     }
-  }
-  $('lightbox').addEventListener('click',e=>{if(e.target===$('lightbox'))closeLightbox();});
-  document.addEventListener('click',e=>{
-    // Close emoji pickers on outside click
-    ['new','edit'].forEach(mode=>{
-      const picker=$(  `emoji-picker-${mode}`);
-      if(picker&&picker.style.display!=='none'){
-        if(!picker.contains(e.target)&&e.target.id!==`${mode}-mood-display`&&e.target.id!==`${mode}-mood-input`)
-          picker.style.display='none';
-      }
+  } catch(e){ console.error('Gate wire error:',e); }
+
+  // ── STEP 2: Check if already unlocked ──
+  try {
+    const expected=await sha256(ACCESS_PASSWORD+'_ok');
+    const stored=sessionStorage.getItem('amma_gate')||localStorage.getItem('amma_gate_persist');
+    if(stored===expected){
+      $('panel-gate').classList.add('gone');
+      await startApp();
+      return; // exit early — app is running
+    }
+  } catch(e){ console.error('Gate check error:',e); }
+
+  // ── STEP 3: Wire remaining listeners safely ──
+  try {
+    const lb=$('lightbox');
+    if(lb) lb.addEventListener('click',e=>{if(e.target===lb)closeLightbox();});
+  } catch(e){}
+  try {
+    document.addEventListener('click',e=>{
+      ['new','edit'].forEach(mode=>{
+        const picker=$('emoji-picker-'+mode);
+        if(picker&&picker.style.display!=='none'){
+          if(!picker.contains(e.target)&&e.target.id!==mode+'-mood-display'&&e.target.id!==mode+'-mood-input')
+            picker.style.display='none';
+        }
+      });
     });
-  });
+  } catch(e){}
 });
 
 async function tryUnlock(){
