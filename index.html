@@ -1567,22 +1567,22 @@ window.saveEdit=async function(){
     const updated=MY.map(e=>e.id!==AE.id?e:{...e,title:encT,ptitle:title,mood:selMoodEdit,edited:editedAt,contentWordCount:wordCount,mediaCount:editMedia.length});
     await kvSet(K_META(CU.username),updated);
     await kvSet(K_BODY(CU.username,AE.id),{content:encB});
-    // Update IndexedDB media
-    if(editMedia.length>0)await idbSet(IDB_MEDIA(CU.username,AE.id),[...editMedia]);
-    else await idbDel(IDB_MEDIA(CU.username,AE.id));
+    // Media save — isolated try/catch so a failure never aborts the text save
+    try{if(editMedia.length>0)await idbSet(IDB_MEDIA(CU.username,AE.id),[...editMedia]);
+    else await idbDel(IDB_MEDIA(CU.username,AE.id));}catch(me){dbg("media err",me?.message);}
     MY=updated;APT=title;AC=body;viewMedia=[...editMedia];
     AE={...AE,title:encT,ptitle:title,mood:selMoodEdit,edited:editedAt,contentWordCount:wordCount,mediaCount:editMedia.length};
     // Rewrite shared copies if needed
     if(!OUs.length)await loadOthers();
     const entry=updated.find(e=>e.id===AE.id);
-    if(entry.sharedWith?.length>0)await rewriteShared(entry,title,body,editMedia);
+    if(entry?.sharedWith?.length>0)await rewriteShared(entry,title,body,editMedia);
     renderMine();hi('modal-edit');
     $('v-mood').textContent=selMoodEdit;$('v-title').textContent=title;$('v-body').textContent=body;
     $('v-wc').textContent=wordCount+' '+(wordCount===1?'word':'words');
     $('v-date').innerHTML=`<span>${fd(AE.date)}</span><span>·</span><span>${ft(AE.date)}</span><span>·</span><span style="font-style:italic">edited</span>`;
     $('v-media').innerHTML=renderMediaView(viewMedia);$('v-notice').innerHTML='';
     renderViewActions();renderShareSection();sh('modal-view');
-  }catch(err){console.error('saveEdit',err);alert('Failed to save. Please try again.');}
+  }catch(err){console.error('saveEdit',err);hi('modal-edit');sh('modal-view');alert('Save failed — please try again.');}
   btn.disabled=false;btn.innerHTML='Save Changes';
 };
 
