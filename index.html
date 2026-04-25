@@ -1473,11 +1473,10 @@ async function openMyEntry(meta){
   const realWc=wc(AC);
   const words=realWc||meta.contentWordCount||0;
   $('v-wc').textContent=words>0?words+' words':'';
-  // Back-fill missing/stale contentWordCount so entry cards show correct count
+  // Back-fill contentWordCount in memory only — no background kvSet here as it races with saveEdit
   if(realWc>0&&meta.contentWordCount!==realWc){
     MY=MY.map(e=>e.id===meta.id?{...e,contentWordCount:realWc}:e);
     renderMine();
-    kvSet(K_META(CU.username),MY).catch(()=>{});
   }
   $('v-date').innerHTML=`<span>${fd(meta.date)}</span><span>·</span><span>${ft(meta.date)}</span>${meta.edited?'<span>·</span><span style="font-style:italic">edited</span>':''}`;
   $('v-notice').innerHTML='';
