@@ -1095,6 +1095,8 @@ async function checkPin(){
   $('pin-err-msg').textContent='';
   if(matched){
     CU=fresh;CP=PinBuf;PendingUser=null;
+    // Refresh K_USERS on every login to reset kvdb's 30-day TTL
+    kvSet(K_USERS,all).catch(()=>{});
     syncCover(true);MY=await kvGet(K_META(CU.username))||[];await loadOthers();syncCover(false);
     renderApp();showScreen('app');
     await PUSH.register(CU.username);
